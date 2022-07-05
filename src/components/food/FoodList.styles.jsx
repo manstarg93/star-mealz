@@ -1,21 +1,29 @@
 import styled from 'styled-components'
+import { device } from '../../styles/mediaquery'
 import { boxShadow, variables } from '../../styles/variables'
 import Input, { Select } from '../form/Input'
 
 export const FoodListContainer = styled.div`
     display: flex;
     justify-content: space-around;
-margin: 20px auto;
+    flex-direction: column;
+    gap: 15px;
     align-items: center;
+    margin: 10px auto;
+    
+  @media ${device.desktop}{
+flex-direction: row;
+  }
 
-    &:nth-child(2n){
-        background-color: ${variables.lightGray};
-    }
+
 `
 
 export const FoodListItems = styled.div`
 
     margin: 10px auto;
+
+    width: 100%;
+    padding: 0 10px;
     text-align: center;
     h1{
         margin: 10px;
@@ -23,6 +31,10 @@ export const FoodListItems = styled.div`
 
     p{
 text-transform: capitalize;
+    }
+
+    @media ${device.desktop}{
+        width: auto;
     }
 `
 
@@ -37,7 +49,7 @@ export const AddRemoveContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-gap: 15px;
+gap: 20px;
     position: relative;
 `
 

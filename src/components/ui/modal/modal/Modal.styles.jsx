@@ -39,10 +39,15 @@ export const ModalHeader = styled.div`
     justify-content: space-between;
     align-items: center;
     height: max-content;
+    padding: 5px 0;
+    border-bottom: solid ${variables.lightGray} .3px;
+ 
 `
 
 export const ModalTitle = styled.h1`
-    font-size: 1.6rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: capitalize;
 `
 
 export const CloseModalContainer = styled.div`
@@ -56,5 +61,6 @@ export const CloseModalContainer = styled.div`
 `
 
 export const ModalBody = styled.div`
-    
+    overflow-y: auto;
+    max-height: 80vh;
 `

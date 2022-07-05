@@ -1,5 +1,7 @@
 import styled from 'styled-components'
+import { device } from '../../styles/mediaquery'
 import { variables } from '../../styles/variables'
+import Button from '../button/Button'
 
 export const ClearMealContainer = styled.div`
     text-align: center;
@@ -15,7 +17,19 @@ export const ClearMealContainer = styled.div`
         height: 33px;
         fill: ${variables.red};
         cursor: pointer;
- 
+        display: none;
         
+        @media ${device.desktop}{
+            display: block;
+        }
+    }
+`
+
+export const ClearButton = styled(Button)`
+    display: block;
+    background-color: ${variables.red};
+    color: ${variables.white};
+    @media ${device.desktop}{
+        display: none;
     }
 `

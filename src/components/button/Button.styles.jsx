@@ -16,6 +16,8 @@ export const ButtonContainer = styled.button`
     
     &:hover{
         box-shadow: ${boxShadow('hover')};
-       
+        
+        opacity: .8;
+    
     }
 `

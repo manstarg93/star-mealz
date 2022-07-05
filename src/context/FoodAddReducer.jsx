@@ -199,7 +199,6 @@ const resetMealClicked = () => {
        let updatedMeals;
        const existingMeal = meals.find(meal => meal.mealTitle.toLowerCase() === mealTitle.toLowerCase() && meal.selectedOccasion === selectedOccasion && meal.selectedMealDay === selectedMealDay)
 
-       console.log(selectedMealDay)
        if(selectedMealDay === ''){
         addedSuccess = false
         setMessageHandler('Please select a day', addedSuccess)
@@ -263,8 +262,7 @@ const resetMealClicked = () => {
        
     const updateMealHandler = (id) => {
         const selectedMealIndex = meals.findIndex(meal => meal.id === id)
-        console.log(selectedMealIndex)
-        console.log(id)
+        
        
         const updatedMeal = {
             ...meals[selectedMealIndex],

@@ -13,7 +13,7 @@ const MealItems = () => {
    const totalDayCalories = meals.filter(meal => meal.selectedMealDay.toLowerCase() === selectedDay.toLowerCase()).reduce((acc, curr) => acc + curr.selectedWeight, 0 )
 
    const selectedMealDay =  meals.filter(meal => meal.selectedMealDay.toLowerCase() === selectedDay.toLowerCase())
-   console.log(selectedMealDay)
+
    if(selectedMealDay.length === 0){
       mealPlanbyday = <AddMealContainer>Add a meal for {selectedDay}</AddMealContainer>
    }
@@ -61,9 +61,9 @@ const MealItems = () => {
     
     <MealItemsContainer>
         <MealItemsHeader>
-            <MealItemsHeading>Meal Occasion</MealItemsHeading>
-            <MealItemsHeading>Meal Title</MealItemsHeading>
-            <MealItemsHeading>Meal Calories </MealItemsHeading>
+            <MealItemsHeading>Occasion</MealItemsHeading>
+            <MealItemsHeading>Title</MealItemsHeading>
+            <MealItemsHeading>Calories </MealItemsHeading>
         </MealItemsHeader>
         {mealPlanbyday}
        <TotalWeightContainer

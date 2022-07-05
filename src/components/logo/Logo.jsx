@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import {ReactComponent as CrownLogo} from '../../assets/crown.svg'
+import {ReactComponent as MealLogo} from '../../assets/logo1.svg'
 import { LogoContainer } from './Logo.styles'
 
 const Logo = () => {
@@ -10,7 +10,7 @@ const Logo = () => {
 
   return (
       <LogoContainer>
- <CrownLogo onClick={GoToHome} />
+ <MealLogo onClick={GoToHome} />
       </LogoContainer>
    
   )

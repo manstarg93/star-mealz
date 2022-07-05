@@ -1,21 +1,18 @@
 import styled from 'styled-components'
+import { device } from '../../styles/mediaquery'
 import { variables } from '../../styles/variables'
 
 export const LogoContainer = styled.div`
     
-    width: 30%;
-    border-right: solid 1px ${variables.lightGray};
-  text-align: center;
-    height: 100%;
-
-    position: relative;
-    
     svg{
+        fill: ${variables.white};
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
 
-        position: absolute;
-        top: 50%;
-    bottom: 50%;
-    transform: translate(-50%, -50%);
-    cursor: pointer;
+        @media ${device.tablet}{
+          width: 50px;
+        height: 50px;
+        }
     }
 `

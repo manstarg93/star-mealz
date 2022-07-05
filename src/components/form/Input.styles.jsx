@@ -1,25 +1,21 @@
 import styled from 'styled-components'
-import { boxShadow, variables } from '../../styles/variables'
+import { variables } from '../../styles/variables'
 
-import Select from 'react-select'
 
 export const InputFormGroup = styled.div`
      position: relative;
+     width: 100%;
 `
 
 
 export const InputContainer = styled.input`
-    border: solid ${variables.gray} .2px;
+border: solid ${variables.gray} .1px;
     padding: 15px;
-    margin: 0 auto;
     transition: all ease-in-out .3s;
     border-radius: 5px;
    width: 100%;
     &::placeholder{
         color: ${variables.gray};
-    }
-    &:hover{
-        border: solid ${variables.darkGrey} .2px;
     }
 
     &:focus-visible{
@@ -35,6 +31,7 @@ export const InputLabel = styled.label`
     left: 10px;
     background-color: ${variables.white};
     z-index:5;
+    text-transform: capitalize;
 `
 
 
@@ -45,13 +42,10 @@ justify-content: center;
 align-items: center;
 gap: 10px;
 position: relative;
-border: .2px solid ${variables.gray};
+border: solid ${variables.gray} .1px;
 border-radius: 5px;
 
 
-&:hover{
-        border: solid ${variables.darkGrey} .2px;
-    }
 `
 
 export const SelectInput = styled.select`

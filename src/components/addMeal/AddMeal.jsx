@@ -3,7 +3,7 @@ import React from 'react'
 import { useContext } from 'react'
 import {ReactComponent as AddMealIcon} from '../../assets/checkedwborder.svg'
 import { FoodAddContext } from '../../context/FoodAddContext'
-import { AddMealContainer } from './AddMeal.styles'
+import { AddButton, AddMealContainer } from './AddMeal.styles'
 
 const AddMeal = props => {
 
@@ -20,6 +20,7 @@ const AddMeal = props => {
   return (
       <AddMealContainer>
 <AddMealIcon onClick={addMealHandler}/>
+<AddButton onClick={addMealHandler}>Add Meal</AddButton>
       </AddMealContainer>
    
   )

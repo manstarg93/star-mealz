@@ -36,7 +36,7 @@ const FoodList = ({food}) => {
           <SelectMealOccasion/>
        </FoodListItems>
 
-       <FoodListItems>
+       
            <AddRemoveContainer>
            <ClearMeal />
         <AddMeal 
@@ -47,7 +47,7 @@ const FoodList = ({food}) => {
         />
            </AddRemoveContainer>
          
-       </FoodListItems>
+      
     </FoodListContainer>
   )
 }

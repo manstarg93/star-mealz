@@ -6,7 +6,6 @@ const NavigationLink = () => {
     <NavigationLinkContainer>
         <NavigationLinks to='/mealplan'>Meal Plan</NavigationLinks>
         <NavigationLinks to='/'>Favourite</NavigationLinks>
-        <NavigationLinks to='/'>Shop</NavigationLinks>
         <NavigationLinks to='/'>User</NavigationLinks>
     </NavigationLinkContainer>
   )

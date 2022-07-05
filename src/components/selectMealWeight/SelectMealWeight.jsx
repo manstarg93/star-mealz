@@ -12,7 +12,7 @@ selectMealWeight(parseInt(event.target.value))
     }
 
   return (
-    <ServingSize label='Calories' name='calories' onChange={weightSelectHandler}  type='number'  placeholder='Enter Calories: Kcal'/>
+    <ServingSize label='Calories' name='calories' value={selectedWeight} onChange={weightSelectHandler}  type='number'  placeholder='Enter Calories: Kcal'/>
   )
 }
 

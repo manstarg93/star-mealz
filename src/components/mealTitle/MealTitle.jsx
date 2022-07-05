@@ -12,7 +12,7 @@ const mealTitleHandle = (event) => {
     mealTitleHandler(event.target.value)
 }
   return (
-   <MealTitleInput label='Meal Title' name='mealtitle' onChange={mealTitleHandle} placeholder='Enter meal title' />
+   <MealTitleInput label='Meal Title' name='mealtitle' value={mealTitle} onChange={mealTitleHandle} placeholder='Enter meal title' />
   )
 }
 

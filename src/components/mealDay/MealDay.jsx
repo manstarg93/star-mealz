@@ -8,10 +8,7 @@ import { MealDayContainer, MealDayList } from './MealDay.styles'
 
 const MealDay = () => {
 
-    const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-    const NewDay =new Date().getDay()
-
-    console.log(days[NewDay])
+ 
 
     
     const items = [

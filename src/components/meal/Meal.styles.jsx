@@ -1,4 +1,5 @@
 import styled from  'styled-components'
+import { device } from '../../styles/mediaquery'
 import { variables } from '../../styles/variables'
 import SelectDay from '../selectDay/SelectDay'
 
@@ -14,7 +15,7 @@ export const SelectDayInput = styled(SelectDay)`
 
 export const MyMealLists = styled.div`
     
-  
+  margin: 20px auto;
 padding: 10px 0 10px 0;
 
 `
@@ -31,14 +32,20 @@ export const MealListItemsContainer = styled.div`
 justify-content: space-between;
 width: 100%;
 align-items: center;
-padding: 0;
 
 
+@media ${device.tablet}{
+
+}
 
 `
 
 export const MealListTitle = styled.h1`
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     text-align: center;
+
+    @media ${device.tablet}{
+        font-size: 1.8rem;
+}
 `
 

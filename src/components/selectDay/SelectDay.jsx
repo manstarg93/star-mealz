@@ -23,7 +23,7 @@ selectDay(event.target.value)
    
   return (
     <SelectDayContainer>
-<SelectDaySelect  defaultValue={currentDay} onChange={daySelectHandler}>
+<SelectDaySelect label='pick a day' name='selectday' defaultValue={currentDay} onChange={daySelectHandler}>
         <option value='monday'>Monday</option>
         <option value='tuesday'>Tuesday</option>
         <option value='wednesday'>Wednesday</option>

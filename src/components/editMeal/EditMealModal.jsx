@@ -49,12 +49,14 @@ const EditMealModal = () => {
     { value: 'dinner', label: 'Dinner' }
       ]
 
+      let selectedDay;
   const mealToUpdate = meals.filter(meal => meal.id === selectedId).map(selectedMeal => {
+    selectedDay = selectedMeal.selectedMealDay
     return(
       <Fragment key={selectedMeal.id}>
 
   
-<EditTitle>You are editing {selectedMeal.mealTitle} for {selectedMeal.selectedMealDay}</EditTitle>
+<EditTitle>editing {selectedMeal.mealTitle}</EditTitle>
 
 <MealTitleInput label='Meal Title' name='mealtitle' onChange={mealTitleHandle} value={mealTitle} placeholder={selectedMeal.mealTitle} />
 
@@ -78,7 +80,7 @@ const EditMealModal = () => {
     )
   })
   return (
-   <Modal show={showEditModal}>
+   <Modal title={`${selectedDay}`}  show={showEditModal}>
      <EditModalContainer>
 
      {mealToUpdate}
