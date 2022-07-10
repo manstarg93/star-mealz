@@ -1,13 +1,22 @@
 
 import styled from 'styled-components'
+import { device } from './styles/mediaquery'
 import { boxShadow, variables } from './styles/variables'
 
 export const AppContainer  = styled.div`
-height: 100%;
-width: 80%;
+
+
 box-sizing: border-box;
-margin: 40px auto;
-box-shadow: ${boxShadow};
-background-color: ${variables.white};
+
+
+
+
+@media ${device.laptop}{
+    width: 80%;
+    height: 100%;
+    box-shadow: ${boxShadow};
+    margin: 40px auto;
+    background-color: ${variables.white};
+}
 
 `

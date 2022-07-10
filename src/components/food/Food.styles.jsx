@@ -4,7 +4,7 @@ import Button from '../button/Button'
 
 export const FoodContainer = styled.div`
 
-        box-shadow: ${boxShadow};
+      
         padding-bottom: 20px;
 `
 

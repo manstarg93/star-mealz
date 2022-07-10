@@ -4,20 +4,19 @@ import { MealContext } from '../../context/MealContext'
 import { UiContext } from '../../context/UiContext'
 import { CancelDeleteButton, ConfirmDeleteButton, DeleteModalButtonContainer } from '../deleteButtton/DeleteModal.styles'
 import { MealTitleInput } from '../mealTitle/MealTitle.styles'
-import { SelectMealDaySelect } from '../selectMealDay/selectMealDay.styles'
 import { MealOccasionSelector } from '../selectMealOccasion/SelectMealOccasion.styles'
 import { ServingSize } from '../selectMealWeight/SelectMealWeight.styles'
-import Modal from '../ui/modal/modal/Modal'
+import Modal from '../ui/modal/Modal'
 import { EditFormGroup, EditModalContainer, EditTitle } from './EditMealModal.styles'
 
 const EditMealModal = () => {
 
-    const {showEditModal,closeModal} = useContext(UiContext)
+    const {showEditModal,showEditModalHandler} = useContext(UiContext)
     const {meals,selectMealWeight, selectedWeight,mealTitle,selectOccasion, mealTitleHandler, selectedOccasion,updateMealHandler} = useContext(FoodAddContext)
     const {selectedId} = useContext(MealContext)
 
     const cancelEdithandler =  () => {
-      closeModal()
+     showEditModalHandler()
   }
 
   const mealTitleHandle = (event) => {
@@ -26,7 +25,7 @@ const EditMealModal = () => {
 }
   const EditItemHandler = () => {
     updateMealHandler(selectedId)
-      closeModal()
+     showEditModalHandler()
           }
 
 
@@ -80,7 +79,7 @@ const EditMealModal = () => {
     )
   })
   return (
-   <Modal title={`${selectedDay}`}  show={showEditModal}>
+   <Modal close={showEditModalHandler} title={`${selectedDay}`}  show={showEditModal}>
      <EditModalContainer>
 
      {mealToUpdate}

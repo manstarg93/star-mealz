@@ -29,8 +29,8 @@ export const InputLabel = styled.label`
     font-weight: bold;
     top: -6px;
     left: 10px;
-    background-color: ${variables.white};
-    z-index:5;
+    background-color: white;
+    z-index:10;
     text-transform: capitalize;
 `
 
@@ -44,14 +44,14 @@ gap: 10px;
 position: relative;
 border: solid ${variables.gray} .1px;
 border-radius: 5px;
-
+background-color: ${variables.white};
 
 `
 
 export const SelectInput = styled.select`
 border: none;
     padding: 15px;
-background-color: transparent;
+background-color: ${variables.white};
 z-index: 9;
 appearance: none;
 width: 100%;

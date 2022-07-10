@@ -1,9 +1,11 @@
 import styled from 'styled-components'
-import { boxShadow, variables } from '../../../../styles/variables'
+import { device } from '../../../styles/mediaquery'
+import { boxShadow, variables } from '../../../styles/variables'
+
 
 export const ModalContainer = styled.div`
-    width: max-content;
-    max-width: 50%;
+    width: 80%;
+    max-width: 80%;
     margin: 0 auto;
     height: max-content;
     padding: 10px;
@@ -17,6 +19,10 @@ export const ModalContainer = styled.div`
     display: ${props => props.show ? 'block' : 'none'};
   z-index: 999;
 
+  @media ${device.tablet}{
+      width: 40%;
+      max-width: 60%;
+  }
 
 `
 

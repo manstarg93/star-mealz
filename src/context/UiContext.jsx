@@ -7,16 +7,18 @@ export const UiContext = createContext({
     showdeletewarninghandler: () => {},
     showEditModal: false,
     showEditModalHandler: false,
-    closeModal: () => {}
+    closeModal: () => {},
+    showLoginSignUpModal: false,
+    showloginSignUpHandler: () => {}
 })
 
 
 export const UiProvider = ({children}) => {
-    const {showDeleteWarningModal,showdeletewarninghandler, showEditModalHandler,showEditModal,closeModal} = useUiReducer()
+    const {showDeleteWarningModal,showdeletewarninghandler, showEditModalHandler,showEditModal,closeModal,showLoginSignUpModal, showloginSignUpHandler} = useUiReducer()
     const value = {
         showDeleteWarningModal,
         showdeletewarninghandler,
-        showEditModalHandler,showEditModal,closeModal
+        showEditModalHandler,showEditModal,closeModal,showLoginSignUpModal, showloginSignUpHandler
     }
     return <UiContext.Provider value={value}>{children}</UiContext.Provider>
 } 

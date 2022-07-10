@@ -3,7 +3,7 @@ import { FoodAddContext } from '../../context/FoodAddContext'
 import { MealContext } from '../../context/MealContext'
 import { UiContext } from '../../context/UiContext'
 import Button from '../button/Button'
-import Modal from '../ui/modal/modal/Modal'
+import Modal from '../ui/modal/Modal'
 
 import { DeleteButtonContainer } from './DeleteButton'
 import { CancelDeleteButton, ConfirmDeleteButton, DeleteModalButtonContainer, DeleteModalHeader } from './DeleteModal.styles'
@@ -22,7 +22,7 @@ const DeleteModal = () => {
         showdeletewarninghandler()
             }
   return (
-    <Modal show={showDeleteWarningModal}>
+    <Modal close={showdeletewarninghandler} show={showDeleteWarningModal}>
         <DeleteButtonContainer>
             <DeleteModalHeader>Are you sure you want to remove meal?</DeleteModalHeader>
            <DeleteModalButtonContainer>

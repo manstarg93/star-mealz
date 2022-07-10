@@ -13,21 +13,23 @@ export const DeleteModalHeader = styled.h4`
 
 export const DeleteModalButtonContainer = styled.div`
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 30px;
+    width: 70%;
+    margin: 0 auto;
 `
 
 
 export const CancelDeleteButton = styled(Button)`
     background-color: ${variables.red};
     color: ${variables.white};
-
+    width: 100%;
 
 `
 
 export const ConfirmDeleteButton = styled(Button)`
     background-color: ${variables.green};
     color: ${variables.white};
-
+    width: 100%;
 `

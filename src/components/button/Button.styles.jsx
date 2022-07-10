@@ -3,8 +3,7 @@ import { boxShadow, variables } from '../../styles/variables'
 
 export const ButtonContainer = styled.button`
 
-        padding: 15px;
-    background-color: ${variables.blue};
+        padding: 10px;
     border: none;
     box-shadow: ${boxShadow};
     font-weight: bold;

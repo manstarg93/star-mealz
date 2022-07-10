@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { variables } from '../../styles/variables'
 import { device } from '../../styles/mediaquery'
+import Button from '../button/Button'
 
 
 
@@ -39,4 +40,17 @@ padding-bottom: 5px;
 
      
 
+`
+
+export const LoginRegisterButton = styled(Button)`
+    
+    background-color: ${variables.white};
+    color: ${variables.green};
+    padding: 10px;
+`
+
+export const LogoutButton = styled(Button)`
+    color: ${variables.red};
+    background-color: ${variables.white};
+    padding: 10px;
 `

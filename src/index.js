@@ -7,11 +7,16 @@ import { BrowserRouter } from 'react-router-dom';
 import { FoodProvider } from './context/FoodAddContext';
 import { MealProvider } from './context/MealContext';
 import { UiProvider } from './context/UiContext';
+import { AuthProvider } from './context/AuthContext';
+
+
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
+    <AuthProvider>
     <FoodProvider>
       <MealProvider>
         <UiProvider>
@@ -21,6 +26,8 @@ root.render(
       </MealProvider>
    
     </FoodProvider>
+    </AuthProvider>
+   
 
     </BrowserRouter>
     

@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { FoodContainer, FoodImageBanner, FoodDisplayContainer, FoodListMainContainer, AddToCartContainer, AddToPlan, RemoveTitle, Header } from './Food.styles'
+import { FoodContainer, FoodImageBanner, FoodDisplayContainer } from './Food.styles'
 import FoodList from './FoodList'
 
 import mealTable from '../../assets/mealtable.jpg'
