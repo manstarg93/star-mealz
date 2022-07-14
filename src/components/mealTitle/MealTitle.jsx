@@ -5,14 +5,14 @@ import { FoodAddContext } from '../../context/FoodAddContext'
 import { MealTitleInput } from './MealTitle.styles'
 
 const MealTitle = () => {
-    const {mealTitle, mealTitleHandler} = useContext(FoodAddContext)
+    const {foodAddingValues, mealTitleHandler} = useContext(FoodAddContext)
 
 const mealTitleHandle = (event) => {
 
     mealTitleHandler(event.target.value)
 }
   return (
-   <MealTitleInput label='Meal Title' name='mealtitle' value={mealTitle} onChange={mealTitleHandle} placeholder='Enter meal title' />
+   <MealTitleInput required label='Meal Title' name={foodAddingValues.mealTitle} value={foodAddingValues.mealTitle} onChange={mealTitleHandle} placeholder='Enter meal title' />
   )
 }
 

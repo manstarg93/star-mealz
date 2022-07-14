@@ -4,15 +4,8 @@ import { SelectDayContainer, SelectDaySelect } from './SelectDay.styles'
 
 const SelectDay = () => {
 
-  const {selectDay} = useContext(MealContext)
-  const days = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'];
-  const NewDay =new Date().getDay()
+  const {selectDay,selectedDay} = useContext(MealContext)
 
-  const currentDay = days[NewDay]
-
-  useEffect(() => {
-selectDay(currentDay)
-  },[])
 
     const daySelectHandler = (event) => {
 selectDay(event.target.value)
@@ -23,7 +16,7 @@ selectDay(event.target.value)
    
   return (
     <SelectDayContainer>
-<SelectDaySelect label='pick a day' name='selectday' defaultValue={currentDay} onChange={daySelectHandler}>
+<SelectDaySelect label='pick a day' name='selectday' value={selectedDay} onChange={daySelectHandler}>
         <option value='monday'>Monday</option>
         <option value='tuesday'>Tuesday</option>
         <option value='wednesday'>Wednesday</option>

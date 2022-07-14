@@ -1,15 +1,16 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useContext } from 'react'
 import DeleteModal from '../../components/deleteButtton/DeleteModal'
 import EditMealModal from '../../components/editMeal/EditMealModal'
 
 import Meal from '../../components/meal/Meal'
+import { MealContext } from '../../context/MealContext'
 
 
 import { MealPlanContainer } from './MealPlan.styles'
 
 const MealPlan = () => {
 
-    
+  const {selectedId} = useContext(MealContext)
 
    
   return (
@@ -18,7 +19,7 @@ const MealPlan = () => {
         <Meal/>
     </MealPlanContainer>
     <DeleteModal/>
-    <EditMealModal/>
+    <EditMealModal />
     </Fragment>
 
   )

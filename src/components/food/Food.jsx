@@ -12,7 +12,7 @@ import FoodFeedBack from '../foodFeedBack/FoodFeedBack'
 
 const Food = () => {
 
-    const {addMealClicked,foodAdded,feedBackMessage} = useContext(FoodAddContext)
+    const {verified,feedBackMessage} = useContext(FoodAddContext)
 
 
   return (
@@ -27,7 +27,7 @@ const Food = () => {
     </FoodDisplayContainer>
 
     <FoodList />
-    <FoodFeedBack addClicked={addMealClicked} added={foodAdded} feedBackMessage={feedBackMessage} />
+    <FoodFeedBack  verified={verified} feedBackMessage={feedBackMessage} />
 
         
     </FoodContainer>

@@ -3,7 +3,7 @@ import { device } from '../../styles/mediaquery'
 import { boxShadow, variables } from '../../styles/variables'
 import Input, { Select } from '../form/Input'
 
-export const FoodListContainer = styled.div`
+export const FoodListContainer = styled.form`
     display: flex;
     justify-content: space-around;
     flex-direction: column;

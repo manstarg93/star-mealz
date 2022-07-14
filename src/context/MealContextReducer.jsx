@@ -1,8 +1,14 @@
 import {useReducer } from "react"
 
+const days = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'];
+const NewDay =new Date().getDay()
+
+const currentDay = days[NewDay]
+
+
 
 const initialState = {
-    selectedDay: '',
+    selectedDay: currentDay,
     selectedId: null
 }
 

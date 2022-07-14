@@ -5,7 +5,7 @@ export const Input = (props) => {
   return (
     <InputFormGroup>
       <InputLabel htmlFor={props.name ? props.name : ''}>{props.label}</InputLabel>
- <InputContainer {...props}/>
+ <InputContainer value={props.value && props.value} defaultValue={props.defaultValue && props.defaultValue}  {...props}/>
     </InputFormGroup>
    
   )
@@ -14,9 +14,9 @@ export const Input = (props) => {
 export const Select = props => {
   return(
     <InputFormGroup>
-     <InputLabel htmlFor={props.name ? props.name : ''}>{props.label}</InputLabel>
+     <InputLabel htmlFor={props.name ? props.name.toString() : ''}>{props.label}</InputLabel>
     <SelectContainer>
- <SelectInput {...props}>
+ <SelectInput value={props.value && props.value} defaultValue={props.defaultValue && props.defaultValue}  {...props}>
       {props.children}
       
      

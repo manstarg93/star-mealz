@@ -13,7 +13,7 @@ export const AddMealContainer  = styled.div`
        cursor: pointer;
        display: none;
        @media ${device.desktop}{
-            display: block;
+            display: none;
         }
     }
 `
@@ -22,7 +22,5 @@ export const AddButton = styled(Button)`
     display: block;
     background-color: ${variables.green};
     color: ${variables.white};
-    @media ${device.desktop}{
-        display: none;
-    }
+  
 `

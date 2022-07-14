@@ -1,4 +1,7 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
+import { AuthContext } from '../../context/AuthContext'
+import { FoodAddContext } from '../../context/FoodAddContext'
+import { addDocumentToCollection, docData } from '../../util/firebase.utils'
 import SelectDay from '../selectDay/SelectDay'
 
 
@@ -7,6 +10,7 @@ import { MealContainer, MealListItemsContainer, MyMealLists, MealListTitle, Sele
 import MealItems from './MealItems'
 
 const Meal = () => {
+  
   return (
     <MealContainer>
 <MyMealLists>
@@ -14,7 +18,7 @@ const Meal = () => {
 
 </MyMealLists>
 <MealListItemsContainer>
-<MealItems/>
+<MealItems />
         
        
      

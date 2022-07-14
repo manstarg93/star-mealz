@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom'
 import { NavigationContainer } from './Navigation.styles'
 import NavigationComponent from '../../components/navigation/Navigation'
 
-const Navigation = () => {
+const Navigation = ({authData}) => {
   return (
     <NavigationContainer>
        <NavigationComponent/>

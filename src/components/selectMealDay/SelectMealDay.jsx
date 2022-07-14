@@ -4,19 +4,15 @@ import { SelectMealDaySelect } from './selectMealDay.styles'
 
 const SelectMealDay = () => {
 
-    const {selectMealDay} = useContext(FoodAddContext)
+    const {selectMealDay,foodAddingValues} = useContext(FoodAddContext)
     const mealDaySelectHandler = (event) => {
         selectMealDay(event.target.value)
         
             }
 
-            const days = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'];
-            const NewDay =new Date().getDay()
-        
-            const currentDay = days[NewDay]
 
   return (
-    <SelectMealDaySelect label='Pick a day' name='mealday' defaultValue={currentDay}  onChange={mealDaySelectHandler}>
+    <SelectMealDaySelect label='Pick a day' name='mealday' value={foodAddingValues.selectedMealDay}  onChange={mealDaySelectHandler}>
     
         <option value='monday'>Monday</option>
         <option value='tuesday'>Tuesday</option>

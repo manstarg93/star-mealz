@@ -42,6 +42,8 @@ padding-bottom: 5px;
 
 `
 
+
+
 export const LoginRegisterButton = styled(Button)`
     
     background-color: ${variables.white};

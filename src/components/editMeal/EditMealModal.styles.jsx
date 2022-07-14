@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { device } from '../../styles/mediaquery'
 import {boxShadow, variables} from '../../styles/variables'
+import Input from '../form/Input'
 export const EditModalContainer = styled.div`
     padding: 10px;
     margin: 0 auto;
@@ -24,7 +25,13 @@ export const EditTitle = styled.h4`
     @media ${device.tablet}{
         font-size: 1.4rem;
     }
-`
 
+    span{
+        color: ${variables.orange};
+    }
+`
+export const MealCalorieInput = styled(Input)`
+    
+`
 
 

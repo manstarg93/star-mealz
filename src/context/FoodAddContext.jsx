@@ -1,4 +1,5 @@
-import { createContext, useEffect } from "react";
+import { createContext} from "react";
+
 import { useFoodAddReducer } from "./FoodAddReducer";
 
 
@@ -9,52 +10,52 @@ const days = ['sunday','monday','tuesday','wednesday','thursday','friday','satur
             const currentDay = days[NewDay]
 
 export const FoodAddContext = createContext({
-    mealTitle: '',
+    foodAddingValues: {
+        mealTitle: '',
+        selectedOccasion: 'breakfast',
+        selectedMealDay: currentDay,
+        selectedWeight: '',
+       },
     mealTitleHandler: () => {},
     foodSearchHandler: () => {},
     clearMealHandler: () => {},
     selectOccasion: () => {},
-    selectedOccasion: 'breakfast',
+  
     selectMealWeight: () => {},
-    selectedWeight: '',
+
     addMeal: () => {},
-    meals: [],
+
     mealOptions: [],
-    addMealClicked: false,
-    foodAdded: false,
+
+    verified: false,
     feedBackMessage: '',
-    selectedMealDay: currentDay,
     selectMealDay: () => {},
     removeMealHandler: () => {},
-    updateMealHandler: () => {}
+    updateMealHandler: () => {},
+       
+
+ 
 }) 
 
 
 
 export const FoodProvider = ({children}) => {
-    const {mealTitle, mealTitleHandler, clearMealHandler,selectOccasion,selectedOccasion,selectedWeight,selectMealWeight,addMeal,
-        meals,addMealClicked,foodAdded,feedBackMessage,resetMealClicked,selectMealDay,selectedMealDay,removeMealHandler,updateMealHandler} = useFoodAddReducer()
+    const {mealTitle, mealTitleHandler, clearMealHandler,selectOccasion,foodAddingValues,selectMealWeight,addMeal
+        ,addMealClicked,verified,feedBackMessage,selectMealDay,removeMealHandler,updateMealHandler} = useFoodAddReducer()
 
 
-        useEffect(() => {
-            if(addMealClicked){
-setTimeout(() => {
-    resetMealClicked()
-},2000);
-            }
-        },[addMealClicked,resetMealClicked])
     const value = {
         mealTitle,
         mealTitleHandler,
         clearMealHandler,
         selectOccasion,
-        selectedOccasion,
+    foodAddingValues,
         selectMealWeight,
-        selectedWeight,
         addMeal,
-        meals,
+        
         updateMealHandler,
-        addMealClicked,foodAdded,feedBackMessage,selectMealDay,selectedMealDay,removeMealHandler
+        addMealClicked,verified,feedBackMessage,selectMealDay,removeMealHandler,
+       
     }
     return(
         <FoodAddContext.Provider value={value}>

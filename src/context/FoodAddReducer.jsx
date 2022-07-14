@@ -1,5 +1,7 @@
 
-import { useReducer } from "react"
+import { useContext, useReducer } from "react"
+import { addDocumentToCollection, docData, getDocumentData } from "../util/firebase.utils";
+import { MealContext } from "./MealContext";
 
 
 
@@ -11,178 +13,117 @@ const days = ['sunday','monday','tuesday','wednesday','thursday','friday','satur
 
 const initialState = {
 
+   
+    
+   
+   foodAddingValues: {
     mealTitle: '',
     selectedOccasion: 'breakfast',
+    selectedMealDay: currentDay,
     selectedWeight: '',
-    meals: [],
-    addMealClicked: false,
-    foodAdded: false,
+   },
+    verified: false,
     feedBackMessage: '',
-    selectedMealDay: currentDay
-   
+
 }
 
 
 
 export const useFoodAddReducer = () => {
 
-
-    
-
-    
-
     const actionType = {
-        
-        CLEAR_MEAL: 'CLEAR_MEAL',
-        SELECT_OCCASION: 'SELECT_OCCASION',
-        SELECT_WEIGHT: 'SELECT_WEIGHT',
-        ENTER_MEAL_TITLE:'ENTER_MEAL_TITLE',
-        ADD_TO_MEAL: 'ADD_TO_MEAL',
-        ADD_MEAL_CLICKED_HANDLER: 'ADD_MEAL_CLICKED_HANDLER',
+        FOOD_ADDING_VALUES: 'FOOD_ADDING_VALUES',  
         SET_FEEDBACK_MESSAGE: ' SET_FEEDBACK_MESSAGE',
-        SELECT_MEAL_DAY: ' SELECT_MEAL_DAY',
-        REMOVE_MEAL: 'REMOVE_MEAL',
-        UPDATE_MEAL: 'UPDATE_MEAL',
     }
     
-
-
     const AddFoodReducer = (state, action) => {
         const {type, payload} = action
 
         switch (type) {
-            case actionType.SELECT_MEAL_DAY:
+                case actionType.FOOD_ADDING_VALUES:
                 return{
                     ...state,
-                    selectedMealDay: payload
+                    foodAddingValues: payload
                    
                 }
-            case actionType.ENTER_MEAL_TITLE:
-                return{
-                    ...state,
-                    mealTitle: payload
-                   
-                }
-                case actionType.SELECT_OCCASION:
-                    return{
-                        ...state,
-                        selectedOccasion: payload
-                       
-                    }
-                    case actionType.SELECT_WEIGHT:
-                        return{
-                            ...state,
-                            selectedWeight: payload
-                           
-                        }
-                        case actionType.ADD_MEAL_CLICKED_HANDLER:
-                            return{
-                                ...state,
-                                addMealClicked: payload
-                               
-                            }
-                        case actionType.ADD_TO_MEAL:
-            return{
-                ...state,
-                meals: payload,
-
-            }
-
+           
             case actionType.SET_FEEDBACK_MESSAGE:
                 return{
                     ...state,
                     feedBackMessage: payload.message,
-                    foodAdded: payload.addedSuccess
+                    verified: payload.verified
                 }
-                case actionType.CLEAR_MEAL:
-                    return{
-                        ...state,
-                        mealTitle: '',
-                        selectedWeight: '',
-                  
-                    }
-                    case actionType.REMOVE_MEAL:
-                        return{
-                            ...state,
-                            meals: payload
-                      
-                        }
-
-                        case actionType.UPDATE_MEAL:
-                            return{
-                                ...state,
-                                meals: payload
-                          
-                            }
-         
         
             default:
                 return state
         }
     }
 
-    const [{mealTitle,selectedOccasion,selectedWeight,meals,addMealClicked,foodAdded,feedBackMessage, selectedMealDay }, dispatch] = useReducer(AddFoodReducer, initialState)
-
-
-    const selectMealDay = (selectedDay) => {
-            
-        dispatch({
-            type: actionType.SELECT_MEAL_DAY,
-            payload: selectedDay
-
-        })
-    }
-
-       
-const resetMealClicked = () => {
-    dispatch({
-        type: actionType.ADD_MEAL_CLICKED_HANDLER,
-        payload: false
-    })
-}
+    const [{verified,feedBackMessage,foodAddingValues }, dispatch] = useReducer(AddFoodReducer, initialState)
 
         const mealTitleHandler = (mealTitle) => {
-         
+
+            const updateTitle = {
+                ...foodAddingValues,
+                mealTitle
+            }
+
             dispatch({
-                    type: actionType.ENTER_MEAL_TITLE,
-                    payload: mealTitle
+                    type: actionType.FOOD_ADDING_VALUES,
+                    payload: updateTitle
             })
         }
     
+        const selectMealDay = (selectedDay) => {
+            
+
+            const updateDate = {
+                ...foodAddingValues,
+                selectedMealDay: selectedDay
+            }
+            
+            dispatch({
+                type: actionType.FOOD_ADDING_VALUES,
+                payload: updateDate
+    
+            })
+        }
       
 
         const selectOccasion = (mealOccasion) => {
     
+            const updateOccassion = {
+                ...foodAddingValues,
+                selectedOccasion: mealOccasion
+            }
 
             dispatch({
-                type: actionType.SELECT_OCCASION,
-                payload: mealOccasion
+                type: actionType.FOOD_ADDING_VALUES,
+                payload: updateOccassion
             })
  
         }
 
         const selectMealWeight = (enteredWeight) => {
-           
+
+            const updateWeight = {
+                ...foodAddingValues,
+                selectedWeight: enteredWeight
+            }
 
             dispatch({
-                type: actionType.SELECT_WEIGHT,
-                payload: enteredWeight
+                type: actionType.FOOD_ADDING_VALUES,
+                payload: updateWeight
             })
  
         }
 
-        const addMealClickedHandler = () => {
-
-            dispatch({
-                type: actionType.ADD_MEAL_CLICKED_HANDLER,
-                payload: true
-            })
-        }
-        const setMessageHandler = (message, addedSuccess) => {
+   
+        const setMessageHandler = (message, verified) => {
 
             const payload = {
                 message,
-                addedSuccess
+                verified
             }
             dispatch({
                 type: actionType.SET_FEEDBACK_MESSAGE,
@@ -190,136 +131,168 @@ const resetMealClicked = () => {
             })
         }
 
+const resetFeedbackMessage = () => {
+    
+    setTimeout(() => {
+        setMessageHandler('',false)
+    },2000);
+}
      
 
-        const addMeal = (id) => {
-            addMealClickedHandler()
-    
-       let addedSuccess;
-       let updatedMeals;
-       const existingMeal = meals.find(meal => meal.mealTitle.toLowerCase() === mealTitle.toLowerCase() && meal.selectedOccasion === selectedOccasion && meal.selectedMealDay === selectedMealDay)
-
-       if(selectedMealDay === ''){
-        addedSuccess = false
-        setMessageHandler('Please select a day', addedSuccess)
-        
-        return
-    }
-       if(mealTitle === ''){
-        addedSuccess = false
-        setMessageHandler('Please enter meal title', addedSuccess)
-        
-        return
-    }
-    if(selectedOccasion === 'occasion' || selectedOccasion === ''){
-
-        addedSuccess = false
-        setMessageHandler('Please select the correct occasion', addedSuccess)
-      
-       return
-    }
-    if(selectedWeight === '' || selectedWeight === isNaN ){
-        addedSuccess = false
-    setMessageHandler('enter a valid weight',addedSuccess)
-       
-        return
-    }
-    if(existingMeal){
-      
-        
-        addedSuccess = false
-        setMessageHandler('Meal already added to occasion',addedSuccess)
-          return
-      }
-        
-            addedSuccess = true
-            setMessageHandler('meal added successfully',addedSuccess)
+        const addMeal = async (userId) => {
            
-            const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-            const NewDay =new Date().getDay()
-        
-            const currentDay = days[NewDay]
+            
+       let verified;
+       let updatedMeals;
+   
 
-            const meal = {
-                id: Math.random(1),
-                mealTitle,
-                selectedOccasion,
-                selectedWeight,
-                selectedMealDay
-    
+
+        await getDocumentData(userId).then(data => {
+
+            if(docData.mealplan){
+             
+               const existingMeal = docData.mealplan.find(meal => meal.mealTitle.toLowerCase() === foodAddingValues.mealTitle.toLowerCase() 
+                && meal.selectedOccasion === foodAddingValues.selectedOccasion && meal.selectedMealDay === foodAddingValues.selectedMealDay)
+                       
+                    
+                        if(existingMeal){
+                            verified = false
+                            setMessageHandler('Meal already added to occasion',verified)
+                            resetFeedbackMessage()
+                              return
+                          }
+                          else{
+                            const meal = {
+                                id: Math.random(1),
+                               mealTitle: foodAddingValues.mealTitle,
+                                selectedOccasion: foodAddingValues.selectedOccasion,
+                               selectedWeight: foodAddingValues.selectedWeight,
+                                selectedMealDay: foodAddingValues.selectedMealDay
+                        
+                            }
+                        updatedMeals = [...docData.mealplan,meal]
+                          
+                        addDocToCollectionHandler(userId,updatedMeals,'meal added successfully')
+                       
+                        clearMealHandler()
+                            resetFeedbackMessage()
+                        }
+                    
             }
-        updatedMeals = [...meals,meal]
-          
-       
-            dispatch({
-                type: actionType.ADD_TO_MEAL,
-                payload: updatedMeals
-            })
-
+            if(!docData.mealplan){
+            
+                const meal = {
+                    id: Math.random(1),
+                    mealTitle: foodAddingValues.mealTitle,
+                                selectedOccasion: foodAddingValues.selectedOccasion,
+                               selectedWeight: foodAddingValues.selectedWeight,
+                                selectedMealDay: foodAddingValues.selectedMealDay
+            
+                }
+            updatedMeals = [meal]
+            addDocToCollectionHandler(userId,updatedMeals,'meal added successfully')
+            resetFeedbackMessage()
+            clearMealHandler()
+            }
+        })
+        .catch(error => {
+          console.log(error.code, 'Please log in or register to save your meals')
+        })
 
           }
 
+   
        
-    const updateMealHandler = (id) => {
-        const selectedMealIndex = meals.findIndex(meal => meal.id === id)
-        
-       
-        const updatedMeal = {
-            ...meals[selectedMealIndex],
-            mealTitle,
-            selectedOccasion,
-            selectedWeight,
-            
-        }
-        const copiedMeal = meals
-        
-    copiedMeal.splice(selectedMealIndex,1,updatedMeal)
-
-        dispatch({
-            type: actionType.UPDATE_MEAL,
-            payload: copiedMeal
-        })
+    const updateMealHandler =  (id,userId,mappedMeal) => {
+        const selectedMealIndex = docData.mealplan.findIndex(meal => meal.id === id)
+      
+            if(foodAddingValues.mealTitle === '' ){
     
+                updateMeal(userId,selectedMealIndex,mappedMeal.mealTitle,foodAddingValues.selectedWeight)
+            }  
+            if(foodAddingValues.selectedWeight === '' ){
+    
+                updateMeal(userId,selectedMealIndex,foodAddingValues.mealTitle,mappedMeal.selectedWeight)
+            }  
+            if(foodAddingValues.selectedWeight === '' && foodAddingValues.selectedWeight === ''){
+    
+                updateMeal(userId,selectedMealIndex,mappedMeal.mealTitle,mappedMeal.selectedWeight)
+            }  
+
+          if(foodAddingValues.mealTitle !== '' && foodAddingValues.selectedWeight !== ''  ){
+
+  
+            updateMeal(userId,selectedMealIndex,foodAddingValues.mealTitle, foodAddingValues.selectedWeight)
+          }
+
     }
 
-             
-        
 
+const updateMeal = async (userId, mealIndex, mealTitle, selectedWeight) => {
+    const updatedMeal = {
+        ...docData.mealplan[mealIndex],
+        mealTitle: mealTitle,
+        selectedWeight: selectedWeight,
+                           
+        
+    }
+    const copiedMeal = docData.mealplan
+    
+copiedMeal.splice(mealIndex,1,updatedMeal)
+ addDocToCollectionHandler(userId,copiedMeal,'meal updated successfully')
+
+resetFeedbackMessage()
+}
         const clearMealHandler = () => {
 
-            dispatch({
-                type: actionType.CLEAR_MEAL,
-           
-            })
+            const updateValue = {
+                selectedOccasion: 'breakfast',
+                selectedMealDay: currentDay,
+                mealTitle: '',
+                selectedWeight: ''
+            }
+     
+
+                dispatch({
+                    type: actionType.FOOD_ADDING_VALUES,
+                    payload: updateValue
+                })
         }
 
-        const removeMealHandler = (selectedId) => {
+        const removeMealHandler = async(selectedId, userId) => {
 
-            const updatedMeal =  meals.filter(meal => meal.id !== selectedId)
+            const updatedMeal =  docData.mealplan.filter(meal => meal.id !== selectedId)
+            addDocToCollectionHandler(userId,updatedMeal,'meal removed successfully')
+            resetFeedbackMessage()
             dispatch({
                 type: actionType.REMOVE_MEAL,
                 payload: updatedMeal
             })
         }
-        
+       
+        const addDocToCollectionHandler =  async(id, meal,message) => {
+            let verified = false
+            await addDocumentToCollection(id,meal).then(() => {
+            verified = true
+           
+                setMessageHandler(message,verified)
+            })
+        }
     
 
     return{
         mealTitleHandler,
-        mealTitle,
+    
         clearMealHandler,
         selectOccasion,
-        selectedOccasion,
         selectMealWeight,
-        selectedWeight,
         addMeal,
-meals,
-addMealClicked,foodAdded,feedBackMessage,
-resetMealClicked,
+verified,feedBackMessage,
 selectMealDay,
-selectedMealDay,
 removeMealHandler,
-updateMealHandler
+updateMealHandler,
+foodAddingValues,
+
 
     }
 }

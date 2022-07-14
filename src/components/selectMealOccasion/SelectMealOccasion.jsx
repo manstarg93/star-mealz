@@ -5,11 +5,12 @@ import { MealOccasionSelector } from './SelectMealOccasion.styles'
 
 const SelectMealOccasion = () => {
 
-    const {selectOccasion,selectedOccasion } = useContext(FoodAddContext)
+    const {selectOccasion,foodAddingValues } = useContext(FoodAddContext)
 
     const mealAddHandler = (event) => {
 
         selectOccasion(event.target.value)
+       
         
     }
 
@@ -21,7 +22,7 @@ const SelectMealOccasion = () => {
   { value: 'dinner', label: 'Dinner' }
     ]
   return (
-    <MealOccasionSelector label='Occasion' name='mealoccasion' defaultValue='breakfast' onChange={mealAddHandler}    >
+    <MealOccasionSelector label='Occasion' required name={foodAddingValues.selectedOccasion} value={foodAddingValues.selectedOccasion} onChange={mealAddHandler}    >
       {options.map(option => {
         return(
           <option key={option.value} value={option.value}>{option.label}</option>

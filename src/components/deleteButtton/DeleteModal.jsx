@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { AuthContext } from '../../context/AuthContext'
 import { FoodAddContext } from '../../context/FoodAddContext'
 import { MealContext } from '../../context/MealContext'
 import { UiContext } from '../../context/UiContext'
@@ -10,15 +11,17 @@ import { CancelDeleteButton, ConfirmDeleteButton, DeleteModalButtonContainer, De
 
 const DeleteModal = () => {
     const {removeMealHandler} = useContext(FoodAddContext)
-    const {selectedId} = useContext(MealContext)
+    const {selectedId,updateDatabase} = useContext(MealContext)
     const {showDeleteWarningModal, showdeletewarninghandler} = useContext(UiContext)
-
+    const {userId} = useContext(AuthContext)
     const deletewarninghandler =  () => {
         showdeletewarninghandler()
     }
 
-    const deleteItemHandler = () => {
-        removeMealHandler(selectedId)
+    const deleteItemHandler = async () => {
+        await removeMealHandler(selectedId,userId).then(() => {
+            updateDatabase()
+        })
         showdeletewarninghandler()
             }
   return (

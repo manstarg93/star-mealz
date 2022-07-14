@@ -4,11 +4,11 @@ import { ErrorTitle, SuccessTitle } from './FoodFeedBack.styles'
 const FoodFeedBack = (props) => {
 
     let feedBack;
-    if(props.addClicked && props.added === true){
-        feedBack = <SuccessTitle>{props.feedBackMessage}</SuccessTitle>
+    if(props.verified === true){
+        feedBack = <SuccessTitle>{props.feedBackMessage ? props.feedBackMessage : null}</SuccessTitle>
     }
-    else if(props.addClicked && props.added === false){
-        feedBack = <ErrorTitle>{props.feedBackMessage}</ErrorTitle>
+    else if(props.verified === false){
+        feedBack =  <ErrorTitle>{props.feedBackMessage ? props.feedBackMessage : null}</ErrorTitle>
     }
   return feedBack
 

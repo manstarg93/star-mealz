@@ -27,44 +27,7 @@ export const LoginContainer = styled.div`
 export const SignUpContainer = styled.div`
    
 `
-export const GoogleSignUp = styled.div`
-    text-align: center;
-    border-bottom: solid .5px ${variables.gray};
-    border-radius: 10px;
-    display: flex;
-    justify-content:space-between;
-    align-items: center;
-    width: 100%;
-    margin: 40px auto;
-   padding: 5px;
-   gap: 20px;
-    cursor: pointer;
-    svg{
-        
-        height: 30px;
-    }
 
-    @media ${device.laptop}{
-        width: 50;
-        justify-content: flex-start;
-    }
-`
-
-
-export const GoogleButton = styled.span`
-    text-align: start;
-    font-size: 1.1rem;
-    font-weight: bold;
-    padding-left: 0;
-    width: 80%;
-    font-size: 1.4rem;
-    
-    @media ${device.mobile}{
-       
-
-        
-    }
-`
 
 export const LoginRegisterText = styled.p`
     color: ${variables.gray};
@@ -93,6 +56,18 @@ svg{
     cursor: pointer;
 }
     
+`
+
+export const UseEmailText = styled.h4`
+    text-align: center;
+    color: ${variables.darkGrey};
+    text-align: center;
+    width: max-content;
+    margin: 10px auto;
+    font-size: 1.3rem;
+    padding: 10px 0;
+    border-radius: 10px;
+  border-bottom: .5px ${variables.gray} solid;
 `
 export const GoBackText = styled.span`
     color: ${variables.darkGrey};

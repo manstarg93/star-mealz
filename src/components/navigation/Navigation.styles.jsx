@@ -37,6 +37,25 @@ export const NavLogoContainer = styled.div`
     }
 `
 
+export const DisplayName = styled.h4`
+    font-size: 1.4rem;
+    color: ${variables.lightGray};
+
+
+text-transform: capitalize;
+text-align: center;
+
+span{
+font-style: italic;
+color: ${variables.orange};
+font-weight: bold;
+padding: 0 10px;
+}
+@media ${device.mobile}{
+            
+        }
+
+`
 // export const Logo = styled(CrownLogo)`
 //     font-size: 20px;
 //     color: ${variables.white};

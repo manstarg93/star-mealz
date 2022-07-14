@@ -9,7 +9,7 @@ export const ModalContainer = styled.div`
     margin: 0 auto;
     height: max-content;
     padding: 10px;
-    max-height: 450px;
+    
     position: fixed;
  top: 50%;
  left: 50%;
@@ -18,7 +18,7 @@ export const ModalContainer = styled.div`
     box-shadow: ${boxShadow};
     display: ${props => props.show ? 'block' : 'none'};
   z-index: 999;
-
+overflow: none;
   @media ${device.tablet}{
       width: 40%;
       max-width: 60%;
@@ -68,5 +68,7 @@ export const CloseModalContainer = styled.div`
 
 export const ModalBody = styled.div`
     overflow-y: auto;
-    max-height: 80vh;
+   height: 100%;
+    background-color: ${variables.white};
+    width: 100%
 `

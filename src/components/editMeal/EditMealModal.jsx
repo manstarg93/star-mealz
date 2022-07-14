@@ -1,19 +1,24 @@
-import React, { Fragment, useContext } from 'react'
+import React, { Fragment, useContext, useEffect } from 'react'
+import { AuthContext } from '../../context/AuthContext'
 import { FoodAddContext } from '../../context/FoodAddContext'
 import { MealContext } from '../../context/MealContext'
 import { UiContext } from '../../context/UiContext'
+
 import { CancelDeleteButton, ConfirmDeleteButton, DeleteModalButtonContainer } from '../deleteButtton/DeleteModal.styles'
 import { MealTitleInput } from '../mealTitle/MealTitle.styles'
-import { MealOccasionSelector } from '../selectMealOccasion/SelectMealOccasion.styles'
-import { ServingSize } from '../selectMealWeight/SelectMealWeight.styles'
+
 import Modal from '../ui/modal/Modal'
-import { EditFormGroup, EditModalContainer, EditTitle } from './EditMealModal.styles'
+import { EditFormGroup, EditModalContainer, EditTitle, MealCalorieInput } from './EditMealModal.styles'
 
 const EditMealModal = () => {
 
+  
     const {showEditModal,showEditModalHandler} = useContext(UiContext)
-    const {meals,selectMealWeight, selectedWeight,mealTitle,selectOccasion, mealTitleHandler, selectedOccasion,updateMealHandler} = useContext(FoodAddContext)
-    const {selectedId} = useContext(MealContext)
+    const {selectMealWeight,mealTitleHandler,updateMealHandler} = useContext(FoodAddContext)
+    const {selectedId,databaseMeal,updateDatabase} = useContext(MealContext)
+
+    const {userId} = useContext(AuthContext)
+  
 
     const cancelEdithandler =  () => {
      showEditModalHandler()
@@ -23,57 +28,48 @@ const EditMealModal = () => {
 
     mealTitleHandler(event.target.value)
 }
-  const EditItemHandler = () => {
-    updateMealHandler(selectedId)
-     showEditModalHandler()
-          }
+  
 
 
   const weightSelectHandler = (event) => {
-    selectMealWeight(parseInt(event.target.value))
+    selectMealWeight(event.target.value)
+
         }
 
-        const mealAddHandler = (event) => {
-
-          selectOccasion(event.target.value)
-          
-      }
-
    
-      const options = [
-    
-        { value: 'breakfast', label: 'Breakfast' },
-    { value: 'lunch', label: 'Lunch' },
-    { value: 'snack', label: 'Snack' },
-    { value: 'dinner', label: 'Dinner' }
-      ]
+      
+      const EditItemHandler = (selectedMeal) => {
+
+      updateMealHandler(selectedId,userId,selectedMeal)
+            updateDatabase()
+            showEditModalHandler()
+          
+       
+        
+              }
+   
 
       let selectedDay;
-  const mealToUpdate = meals.filter(meal => meal.id === selectedId).map(selectedMeal => {
+    
+  const mealToUpdate = databaseMeal.filter(meal => meal.id === selectedId).map(selectedMeal => {
+    
     selectedDay = selectedMeal.selectedMealDay
     return(
       <Fragment key={selectedMeal.id}>
 
   
-<EditTitle>editing {selectedMeal.mealTitle}</EditTitle>
+<EditTitle>Editing <span>{selectedMeal.mealTitle}</span> for {selectedMeal.selectedOccasion}</EditTitle>
 
-<MealTitleInput label='Meal Title' name='mealtitle' onChange={mealTitleHandle} value={mealTitle} placeholder={selectedMeal.mealTitle} />
+<MealTitleInput label='Meal Title' name='mealtitle' onChange={mealTitleHandle} defaultValue={selectedMeal.mealTitle} placeholder={selectedMeal.mealTitle} />
 
-<ServingSize label='Meal Calories' name='calories' onChange={weightSelectHandler}  value={selectedWeight} type='number'  placeholder={selectedMeal.selectedWeight}/>
+<MealCalorieInput label='Meal Calories' name='calories' onChange={weightSelectHandler}  defaultValue={selectedMeal.selectedWeight} type='number'  placeholder={selectedMeal.selectedWeight}/>
 
-<MealOccasionSelector  label='Occasion' name='mealoccasion' defaultValue={selectedOccasion} onChange={mealAddHandler}    >
-      {options.map(option => {
-        return(
-          <option key={option.value} value={option.value}>{option.label}</option>
-        )
-      })}
-    </MealOccasionSelector>
 
   
 
     <DeleteModalButtonContainer>
                <CancelDeleteButton onClick={cancelEdithandler}>Cancel</CancelDeleteButton>
-               <ConfirmDeleteButton onClick={EditItemHandler}>Confirm</ConfirmDeleteButton>
+               <ConfirmDeleteButton onClick={() => EditItemHandler(selectedMeal)}>Confirm</ConfirmDeleteButton>
            </DeleteModalButtonContainer>
       </Fragment>
     )
@@ -86,6 +82,6 @@ const EditMealModal = () => {
      </EditModalContainer>
    </Modal>
   )
-}
 
+}
 export default EditMealModal
