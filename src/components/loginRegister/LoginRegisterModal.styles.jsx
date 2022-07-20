@@ -2,7 +2,7 @@
 import styled from 'styled-components'
 import { device } from '../../styles/mediaquery'
 import { variables } from '../../styles/variables'
-import Button from '../button/Button'
+import Button from '../ui/button/Button'
 
 export const LoginRegisterModalContainer = styled.div`
     display: ${ props => props.showDefault ? 'block' : 'none'};

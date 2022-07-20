@@ -41,9 +41,9 @@ export const signInAuthWithEmailAndPassword = async(email,password) => {
    export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googleprovider)
 
   export const signOutOfGoogle = () =>  signOut(auth).then(() => {
-    console.log('logout successful')
+
   }).catch((error) => {
-    console.log('logout successful', error)
+
   });
 
 
@@ -59,33 +59,48 @@ export const addDocumentToCollection = async(userId, mealplan) => {
 
 export let docData;
 export let userInfo;
+export let recipieDocument;
 
 export const getDocumentData = async(userId) => {
 
   const docRef = doc(db, "userData",userId);
-  const docSnap = await getDoc(docRef);
+await getDoc(docRef).then((docSnap) => {
+  docData = docSnap.data()
+  }).catch((error)=> {
+  })
 
-  if (docSnap.exists()) {
-
-docData = docSnap.data()
-  } else {
-
-   
-  }
 }
+
+export const addMealRecipiesToDocument = async(userId,recipies) => {
+  await setDoc(doc(db, "recipies", userId), {
+    recipies,
+     
+  });
+}
+
+
+export const getRecipiesFromDocument = async(userId) => {
+
+  const docRef = doc(db, "recipies",userId);
+await getDoc(docRef).then((docSnap) => {
+
+  recipieDocument = docSnap.data()
+  }).catch((error)=> {
+
+  })
+
+}
+
+
 
 export const getUserInfo = async(userId) => {
 
   const docRef = doc(db, "users",userId);
-  const docSnap = await getDoc(docRef);
+  await getDoc(docRef).then((docSnap) => {
+    userInfo = docSnap.data()
+  }).catch(error => {
 
-  if (docSnap.exists()) {
-
-userInfo = docSnap.data()
-  } else {
-
-   
-  }
+  })
 }
 
 export const createUserDocumentFromAuth = async(userAuth,userName,additionalInfo) => {
@@ -103,7 +118,7 @@ additionalInfo = {}
  
 
   if(userSnapshot.exists()){
-    console.log(userSnapshot.data())
+
   }
   if(!userSnapshot.exists()){
   
@@ -123,7 +138,7 @@ additionalInfo = {}
         merge: true
       })
     }catch(error){
-console.log('error creating the user', error.message)
+
     }
   }
 

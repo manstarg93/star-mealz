@@ -1,7 +1,7 @@
 
-import { useContext, useReducer } from "react"
-import { addDocumentToCollection, docData, getDocumentData } from "../util/firebase.utils";
-import { MealContext } from "./MealContext";
+import {  useReducer } from "react"
+import { addDocumentToCollection, addMealRecipiesToDocument, docData, getDocumentData, getRecipiesFromDocument, recipieDocument } from "../util/firebase.utils";
+
 
 
 
@@ -139,7 +139,7 @@ const resetFeedbackMessage = () => {
 }
      
 
-        const addMeal = async (userId) => {
+        const addMeal = async (userId,foodId) => {
            
             
        let verified;
@@ -149,7 +149,26 @@ const resetFeedbackMessage = () => {
 
         await getDocumentData(userId).then(data => {
 
-            if(docData.mealplan){
+
+            if(docData === undefined){
+            
+                const meal = {
+                    id: Math.random(1),
+                    mealTitle: foodAddingValues.mealTitle,
+                                selectedOccasion: foodAddingValues.selectedOccasion,
+                               selectedWeight: foodAddingValues.selectedWeight,
+                                selectedMealDay: foodAddingValues.selectedMealDay
+            
+                }
+            updatedMeals = [meal]
+            addDocToCollectionHandler(userId,updatedMeals,'meal added successfully')
+            resetFeedbackMessage()
+            clearMealHandler()
+            return
+            }
+
+
+           
              
                const existingMeal = docData.mealplan.find(meal => meal.mealTitle.toLowerCase() === foodAddingValues.mealTitle.toLowerCase() 
                 && meal.selectedOccasion === foodAddingValues.selectedOccasion && meal.selectedMealDay === foodAddingValues.selectedMealDay)
@@ -163,7 +182,7 @@ const resetFeedbackMessage = () => {
                           }
                           else{
                             const meal = {
-                                id: Math.random(1),
+                                id: foodId,
                                mealTitle: foodAddingValues.mealTitle,
                                 selectedOccasion: foodAddingValues.selectedOccasion,
                                selectedWeight: foodAddingValues.selectedWeight,
@@ -178,25 +197,14 @@ const resetFeedbackMessage = () => {
                             resetFeedbackMessage()
                         }
                     
-            }
-            if(!docData.mealplan){
             
-                const meal = {
-                    id: Math.random(1),
-                    mealTitle: foodAddingValues.mealTitle,
-                                selectedOccasion: foodAddingValues.selectedOccasion,
-                               selectedWeight: foodAddingValues.selectedWeight,
-                                selectedMealDay: foodAddingValues.selectedMealDay
             
-                }
-            updatedMeals = [meal]
-            addDocToCollectionHandler(userId,updatedMeals,'meal added successfully')
-            resetFeedbackMessage()
-            clearMealHandler()
-            }
         })
         .catch(error => {
-          console.log(error.code, 'Please log in or register to save your meals')
+            verified = false
+        
+          setMessageHandler('Please log in or register to save your meals',verified)
+          resetFeedbackMessage()
         })
 
           }
@@ -264,10 +272,10 @@ resetFeedbackMessage()
             const updatedMeal =  docData.mealplan.filter(meal => meal.id !== selectedId)
             addDocToCollectionHandler(userId,updatedMeal,'meal removed successfully')
             resetFeedbackMessage()
-            dispatch({
-                type: actionType.REMOVE_MEAL,
-                payload: updatedMeal
-            })
+         
+
+
+            
         }
        
         const addDocToCollectionHandler =  async(id, meal,message) => {

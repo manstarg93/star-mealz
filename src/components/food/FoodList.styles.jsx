@@ -1,7 +1,5 @@
 import styled from 'styled-components'
 import { device } from '../../styles/mediaquery'
-import { boxShadow, variables } from '../../styles/variables'
-import Input, { Select } from '../form/Input'
 
 export const FoodListContainer = styled.form`
     display: flex;

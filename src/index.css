@@ -1,13 +1,13 @@
 body {
-  margin: 0;
+ 
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #edf0f6;
+
   margin: 0;
-  color: 	 #4d4d4d;
+  color: 	 #3e4c5c;
   font-size: 1.6rem;
 }
 a{
@@ -15,6 +15,7 @@ a{
 }
 li{
   list-style: none;
+  cursor: pointer;
 }
 
 *{

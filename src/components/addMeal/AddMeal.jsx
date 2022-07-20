@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import {ReactComponent as AddMealIcon} from '../../assets/checkedwborder.svg'
 

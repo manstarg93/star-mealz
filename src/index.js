@@ -8,6 +8,7 @@ import { FoodProvider } from './context/FoodAddContext';
 import { MealProvider } from './context/MealContext';
 import { UiProvider } from './context/UiContext';
 import { AuthProvider } from './context/AuthContext';
+import { RecipieProvider } from './context/RecipieContext';
 
 
 
@@ -19,10 +20,12 @@ root.render(
     <AuthProvider>
     <FoodProvider>
       <MealProvider>
+        <RecipieProvider>
         <UiProvider>
         <App />
         </UiProvider>
-     
+        </RecipieProvider>
+       
       </MealProvider>
    
     </FoodProvider>

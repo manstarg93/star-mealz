@@ -9,7 +9,7 @@ export const InputFormGroup = styled.div`
 
 
 export const InputContainer = styled.input`
-border: solid ${variables.gray} .1px;
+border: solid ${variables.gray} 1px;
     padding: 15px;
     transition: all ease-in-out .3s;
     border-radius: 5px;
@@ -42,7 +42,7 @@ justify-content: center;
 align-items: center;
 gap: 10px;
 position: relative;
-border: solid ${variables.gray} .1px;
+border: solid ${variables.gray} 1px;
 border-radius: 5px;
 background-color: ${variables.white};
 

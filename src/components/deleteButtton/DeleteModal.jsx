@@ -3,7 +3,7 @@ import { AuthContext } from '../../context/AuthContext'
 import { FoodAddContext } from '../../context/FoodAddContext'
 import { MealContext } from '../../context/MealContext'
 import { UiContext } from '../../context/UiContext'
-import Button from '../button/Button'
+import { RecipieContext } from '../../context/RecipieContext';
 import Modal from '../ui/modal/Modal'
 
 import { DeleteButtonContainer } from './DeleteButton'
@@ -11,17 +11,22 @@ import { CancelDeleteButton, ConfirmDeleteButton, DeleteModalButtonContainer, De
 
 const DeleteModal = () => {
     const {removeMealHandler} = useContext(FoodAddContext)
-    const {selectedId,updateDatabase} = useContext(MealContext)
+    const {selectedId,updateDatabase,mealTitle} = useContext(MealContext)
     const {showDeleteWarningModal, showdeletewarninghandler} = useContext(UiContext)
     const {userId} = useContext(AuthContext)
+    const {removeRecipieHandler} = useContext(RecipieContext)
+  
     const deletewarninghandler =  () => {
         showdeletewarninghandler()
     }
 
     const deleteItemHandler = async () => {
         await removeMealHandler(selectedId,userId).then(() => {
-            updateDatabase()
+            updateDatabase(userId)
         })
+
+       removeRecipieHandler(userId, mealTitle)
+
         showdeletewarninghandler()
             }
   return (

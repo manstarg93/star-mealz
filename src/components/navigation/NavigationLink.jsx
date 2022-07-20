@@ -1,48 +1,56 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { useContext } from 'react'
-import {useLocation, useNavigate} from 'react-router'
+import { useNavigate} from 'react-router'
 import { AuthContext } from '../../context/AuthContext'
-import { FoodAddContext } from '../../context/FoodAddContext'
-import { MealContext } from '../../context/MealContext'
 import { UiContext } from '../../context/UiContext'
+import { Link } from 'react-router-dom'
 import { signOutOfGoogle } from '../../util/firebase.utils'
-import { DisplayName, LoginRegisterButton, LogoutButton, NavigationLinkContainer, NavigationLinks } from './NavigationLink.styles'
+import {LoginRegisterButton, LogoutButton, NavigationLinkContainer, NavigationLinks } from './NavigationLink.styles'
+
 
 const NavigationLink = () => {
 
   const {showloginSignUpHandler} = useContext(UiContext)
 const {auth,setLogoutHandler} = useContext(AuthContext)
-const {resetDatabaseMeal,updateDatabase} = useContext(MealContext)
+
 
 const navigate = useNavigate()
   const getStartedHandler = () => {
     showloginSignUpHandler()
+
   }
   const logoutHandler = async() => {
 
-   await signOutOfGoogle()
+   await signOutOfGoogle().then(() => {
     setLogoutHandler()
-    resetDatabaseMeal()
     navigate('/')
+   })
 
   } 
 
-  const goToAddMeal = () => {
-    
-    navigate('/')
+  const goToRecipie = () => {
+
+    navigate('/myrecipies')
+   
   }
 
   
 
-  const goToMealPlanHandler = () => {
-    updateDatabase()
+  const goToMealPlanHandler = async() => {
+
     navigate('/mealplan')
   }
   return (
     <NavigationLinkContainer>
-      {auth && <NavigationLinks onClick={goToMealPlanHandler} to='/mealplan'>Meal Plan</NavigationLinks>}
+      
+      {auth !== null && <Fragment>
+        <NavigationLinks onClick={goToMealPlanHandler} >Meal Plan</NavigationLinks>
+        <NavigationLinks onClick={goToRecipie} >My Recipies</NavigationLinks>
+      {/* <NavigationLinks as={Link}  to='/favourites'>Favourites</NavigationLinks> */}
+      </Fragment> 
+      }
         
-        <NavigationLinks  to='/'>Favourite</NavigationLinks>
+        
        
         {auth !== null ? <LogoutButton onClick={logoutHandler}>Log out</LogoutButton> :    <LoginRegisterButton onClick={getStartedHandler} >Get Started</LoginRegisterButton>}
      

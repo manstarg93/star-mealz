@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { device } from '../../styles/mediaquery'
 import { variables } from '../../styles/variables'
-import Button from '../button/Button'
+import Button from '../ui/button/Button'
 
 export const AddMealContainer  = styled.div`
     
@@ -20,7 +20,8 @@ export const AddMealContainer  = styled.div`
 
 export const AddButton = styled(Button)`
     display: block;
-    background-color: ${variables.green};
-    color: ${variables.white};
+    background-color: ${variables.white};
+    color: ${variables.blue};
+    border: solid 1px ${variables.blue};
   
 `

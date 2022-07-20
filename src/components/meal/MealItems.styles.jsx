@@ -1,11 +1,12 @@
 import styled from 'styled-components'
 import { device } from '../../styles/mediaquery'
 import { boxShadow, variables } from '../../styles/variables'
+import Button from '../ui/button/Button'
 
 
 export const MealItemsContainer = styled.div`
      width: 100%;
-
+   
      transition: all 0.3s ease-in-out;
 `
 
@@ -27,7 +28,7 @@ export const MealItemsLi = styled.li`
 
     text-align: center;
 
-  
+    font-weight: bold;
     padding: 5px;
     padding-top: 18px;
     text-transform: capitalize;
@@ -63,6 +64,7 @@ export const MealItemsHeader = styled.div`
     margin: 10px auto 0 auto;
     height: max-content;
   align-items: center;
+  padding: 0 10px;
  
     box-shadow: ${boxShadow};
     border: solid .5px ${variables.lightGray};
@@ -83,7 +85,7 @@ export const MealItemsHeading = styled.h2`
         border-right: solid 1px ${variables.lightGray};
     }
     text-transform: uppercase;
-    color: ${variables.green};
+    color: ${variables.blue};
     font-weight: bold;
     @media ${device.tablet}{
         font-size: 1.6rem;
@@ -128,6 +130,13 @@ export const MealItemsUl = styled.ul`
 }
 `
 
+export const ViewRecipie = styled(Button)`
+    background-color: inherit;
+    color: ${variables.orange};
+    /* box-shadow: none; */
+    font-weight: bold;
+
+`
 
 
 

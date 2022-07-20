@@ -9,11 +9,11 @@ const DeleteButton = (props) => {
 
     const {saveSelectedId} = useContext(MealContext)
     const  {showdeletewarninghandler} = useContext(UiContext)
-const {id} = props
-   
+const {id,mealTitle} = props
+   console.log(mealTitle)
 
     const deletewarninghandler =  () => {
-        saveSelectedId(id)
+        saveSelectedId(id,mealTitle)
         showdeletewarninghandler()
         
     }

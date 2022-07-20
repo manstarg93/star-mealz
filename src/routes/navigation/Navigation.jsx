@@ -6,7 +6,7 @@ import NavigationComponent from '../../components/navigation/Navigation'
 const Navigation = ({authData}) => {
   return (
     <NavigationContainer>
-       <NavigationComponent/>
+       <NavigationComponent authData/>
        <Outlet/>
     </NavigationContainer>
   )

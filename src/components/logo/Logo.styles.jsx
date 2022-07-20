@@ -5,7 +5,7 @@ import { variables } from '../../styles/variables'
 export const LogoContainer = styled.div`
     
     svg{
-        fill: ${variables.white};
+        fill: ${variables.blue};
         width: 30px;
         height: 30px;
         cursor: pointer;

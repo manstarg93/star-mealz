@@ -1,4 +1,5 @@
 import {useReducer } from "react"
+import { docData, getDocumentData } from "../util/firebase.utils";
 
 const days = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'];
 const NewDay =new Date().getDay()
@@ -9,12 +10,14 @@ const currentDay = days[NewDay]
 
 const initialState = {
     selectedDay: currentDay,
-    selectedId: null
+    selectedId: null,
+    databaseMeal: [],
+    mealTitle: ''
 }
 
 const actionType = {
   SELECT_DAY: ' SELECT_DAY',
-
+    UPDATE_DATABASE_MEAL: ' UPDATE_DATABASE_MEAL',
   SAVE_SELECTED_ID: 'SAVE_SELECTED_ID'
 }
 
@@ -31,8 +34,14 @@ const mealReducer = (state, action) => {
         case actionType.SAVE_SELECTED_ID:
             return{
                 ...state,
-                selectedId: payload
+                selectedId: payload.id,
+                mealTitle: payload.mealTitle
             }
+            case actionType.UPDATE_DATABASE_MEAL:
+                return{
+                    ...state,
+                    databaseMeal: payload
+                }
         default:
             return state
     }
@@ -42,7 +51,7 @@ const mealReducer = (state, action) => {
 export const useMealReducer = () => {
 
     const [state, dispatch] = useReducer(mealReducer,initialState)
-    const {selectedDay,selectedId} = state
+    const {selectedDay,selectedId,databaseMeal,mealTitle} = state
 
     const selectDay = (selectedDay) => {
 dispatch({
@@ -52,18 +61,68 @@ dispatch({
     }
 
 
-    const saveSelectedId = (id) => {
+    const saveSelectedId = (id,mealTitle) => {
+        const payload = {
+            id,
+            mealTitle
+        }
         dispatch({
             type: actionType.SAVE_SELECTED_ID,
-            payload: id
+            payload: payload
         })
             }
+const updateDatabase = async(uid) => {
+           
+                
+                if (uid === undefined || uid === null) {
+                    dispatch({
+                        type: actionType.UPDATE_DATABASE_MEAL,
+                        payload: []
+                  })
+                   return 
+                }
+            
+                    await getDocumentData(uid).then(() => {
+              
+                            if(docData === undefined) {
 
+                              dispatch({
+                                    type: actionType.UPDATE_DATABASE_MEAL,
+                                    payload: []
+                              })
+                               return 
+                            }
+                            else{
+                                dispatch({
+                                    type: actionType.UPDATE_DATABASE_MEAL,
+                                    payload: docData.mealplan
+                              })
+                              
+                            }
+                            
+                       })
+                       
+                       .catch(error => {
+             
+                       })
+      
+            }
+            const resetDatabaseMeal = () => {
+                dispatch({
+                    type: actionType.UPDATE_DATABASE_MEAL,
+                    payload: []
+              })
+              return
+            }
 
     return{
         selectedDay,
         selectDay,
         saveSelectedId,
-        selectedId
+        selectedId,
+        updateDatabase,
+        resetDatabaseMeal,
+        databaseMeal,
+        mealTitle
     }
 }

@@ -2,17 +2,17 @@ import React, { useContext, useState } from 'react'
 
 import { EmailLoginContainer, EmailLoginInput, ErrorMessage, GoogleButton, SignUpLoginButtonContainer, SubmitLogin } from './LoginRegister.styles'
 
-import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth, docData, getDocumentData, signInAuthWithEmailAndPassword, signInWithGooglePopOp } from '../../util/firebase.utils'
+import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth,signInAuthWithEmailAndPassword, signInWithGooglePopOp } from '../../util/firebase.utils'
 import { AuthContext } from '../../context/AuthContext'
 import { UiContext } from '../../context/UiContext'
 import { useInput } from '../../hooks/inputHook'
-import { MealContext } from '../../context/MealContext'
+
 
 const EmailLogin = (props) => {
     const {login, signup} = props
-    const {setAuthHandler,userId,setUserData} = useContext(AuthContext)
+    const {setAuthHandler,setUserData} = useContext(AuthContext)
     const {showloginSignUpHandler} = useContext(UiContext)
-    const  {updateDatabase} = useContext(MealContext)
+  
 
     const {loginRegisterInput: email, LoginRegisterOnChangeHandler: emailChangeHandler} = useInput()
     const {loginRegisterInput: password, LoginRegisterOnChangeHandler: passwordChangeHandler} = useInput()
@@ -28,32 +28,29 @@ const [errorMessage, setErrorMessage] = useState('')
         if(login){
 try {
   await signInAuthWithEmailAndPassword(email,password).then(({user}) => {
-   
+
     setAuthHandler(user)
     setUserData(user.uid)
-    updateDatabase()
+    showloginSignUpHandler()
   })
   .catch((error)=>{
-  
+    switch (error.code) {
+      case 'auth/user-not-found':
+        setErrorMessage('No user associated with this email')
+        break;
+    case 'auth/wrong-password':
+      setErrorMessage('Wrong Password')
+      break
+      default:
+        setErrorMessage('There is an error',error)
+        break;
+    }
   })
+
   
-  
-  
- 
-  showloginSignUpHandler()
  
 } catch (error) {
-  switch (error.code) {
-    case 'auth/user-not-found':
-      setErrorMessage('No user associated with this email')
-      break;
-  case 'auth/wrong-password':
-    setErrorMessage('Wrong Password')
-    break
-    default:
-      setErrorMessage('There is an error',error)
-      break;
-  }
+  
   
 }
         }
@@ -65,21 +62,21 @@ try {
           }
 
 try {
-  const {user} = await createAuthUserWithEmailAndPassword(email, password)
+ await createAuthUserWithEmailAndPassword(email, password).then(({user})=>{
+ createUserDocumentFromAuth(user,displayName).then(() => {
+ 
+    setAuthHandler(user)
+    setUserData(user.uid)
 
-  
- await createUserDocumentFromAuth(user,displayName).then(() => {
+    showloginSignUpHandler()
 
-  setAuthHandler(user)
-  setUserData(user.uid)
-  updateDatabase()
-  
- })
+   })
+  })
+
 
 .catch(error => {
-
 })
-showloginSignUpHandler()
+
 
 
 
@@ -96,23 +93,21 @@ showloginSignUpHandler()
     }
     const googleSignInHandler = async() => {
       try {
-        const {user} = await signInWithGooglePopOp()
- 
-      await createUserDocumentFromAuth(user).then(()=> {
+    await signInWithGooglePopOp().then(({user}) => {
+        createUserDocumentFromAuth(user).then(()=> {
+   
+            setAuthHandler(user)
+            setUserData(user.uid)
   
-        setAuthHandler(user)
-        setUserData(user.uid)
-        updateDatabase()
-        
-        
-      })
-
+            showloginSignUpHandler()
+            
+          })
+        })
       .catch(error => {
 
       })
-      showloginSignUpHandler()
-    
-  
+      
+
       } catch (error) {
     
       }

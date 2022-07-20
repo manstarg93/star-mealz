@@ -1,9 +1,9 @@
 import styled from 'styled-components'
-import { boxShadow, variables } from '../../styles/variables'
+import { boxShadow, variables } from '../../../styles/variables'
 
 export const ButtonContainer = styled.button`
 
-        padding: 10px;
+        padding: 15px;
     border: none;
     box-shadow: ${boxShadow};
     font-weight: bold;

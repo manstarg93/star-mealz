@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from 'react'
+import React, { useContext} from 'react'
 import { MealContext } from '../../context/MealContext'
 import { SelectDayContainer, SelectDaySelect } from './SelectDay.styles'
 

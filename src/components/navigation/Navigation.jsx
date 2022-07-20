@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import { DisplayName, NavigationContainer, NavLogoContainer } from './Navigation.styles'
+import React, { Fragment, useContext } from 'react'
+import { DisplayName, NavigationContainer, NavLogoContainer, NonAuthContainer } from './Navigation.styles'
 import NavigationLink from './NavigationLink'
 
 import Logo from '../logo/Logo'
@@ -7,17 +7,36 @@ import { AuthContext,  } from '../../context/AuthContext'
 
 
 const Navigation = () => {
-  const {userData} = useContext(AuthContext)
+  const {userData,auth} = useContext(AuthContext)
 
   return (
-    <NavigationContainer>
-      <NavLogoContainer>
+    <Fragment>
+       {auth === null && <NonAuthContainer>
+       
       <Logo/>
-      </NavLogoContainer>
-      {userData !== null ?  <DisplayName>Welcome<span>{userData.displayName}</span></DisplayName> : null}
-        {/* <MealSearch/> */}
-        <NavigationLink/>
-    </NavigationContainer>
+    
+        <NavigationLink authData/>
+        </NonAuthContainer>}
+
+
+        {userData !== null && <NavigationContainer>
+     
+      
+     <NavLogoContainer>
+     <Logo/>
+     {userData !== null &&  <DisplayName>Welcome<span>{ userData.displayName.toUpperCase()}</span></DisplayName>}
+     </NavLogoContainer>
+     
+       {/* <MealSearch/> */}
+       <NavigationLink authData/>
+    
+      
+    
+   </NavigationContainer>}
+    </Fragment>
+
+    
+   
   )
 }
 

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { variables } from '../../styles/variables'
-import Button from '../button/Button'
+import Button from '../ui/button/Button'
 
 
 export const DeleteModalContainer = styled.div`

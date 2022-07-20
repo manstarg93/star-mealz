@@ -1,9 +1,15 @@
 import styled from 'styled-components'
+import { device } from '../../styles/mediaquery'
 import { boxShadow, variables } from '../../styles/variables'
-import Button from '../button/Button'
+import Button from '../ui/button/Button'
 
 export const FoodContainer = styled.div`
+width: 100%;
+margin: 0 auto;
 
+@media ${device.tablet}{
+    width: 80%;
+}
       
         padding-bottom: 20px;
 `

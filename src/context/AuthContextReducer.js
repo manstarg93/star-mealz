@@ -52,8 +52,19 @@ export const useAuthReducer = () =>{
 
     const setAuthHandler = (auth) => {
 
+        if(auth === null) {
+            const user = {
+                accessToken: null,
+                userId: null,
+                userDatas: null
+            }
         
-        
+            dispatch({
+                type: actionTypes.SET_AUTH,
+                payload: user
+            })
+        }
+
         const user = {
             accessToken: auth.accessToken,
             userId: auth.uid,
@@ -64,6 +75,8 @@ export const useAuthReducer = () =>{
             payload: user
         })
         localStorage.setItem('auth',JSON.stringify(auth))
+      
+
     }
     const setLogoutHandler = () => {
 localStorage.removeItem('auth')

@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { variables } from '../../styles/variables'
 import { device } from '../../styles/mediaquery'
-import Button from '../button/Button'
+import Button from '../ui/button/Button'
 
 
 
@@ -21,9 +21,9 @@ padding: 0;
 `
 
 
-export const NavigationLinks  = styled(Link)`
+export const NavigationLinks  = styled.li`
     font-size: 1.4rem;
-    color: ${variables.white};
+    color: ${variables.darkGrey};
 font-weight: bold;
 padding-bottom: 3px;
 text-transform: uppercase;
@@ -31,7 +31,7 @@ padding-bottom: 5px;
 
 &:hover{
     
-     border-bottom: .1px solid ${variables.white};
+     border-bottom: .1px solid ${variables.blue};
         }
 
         @media ${device.mobile}{
@@ -46,13 +46,13 @@ padding-bottom: 5px;
 
 export const LoginRegisterButton = styled(Button)`
     
-    background-color: ${variables.white};
-    color: ${variables.green};
+    background-color: ${variables.blue};
+    color: ${variables.white};
     padding: 10px;
 `
 
 export const LogoutButton = styled(Button)`
-    color: ${variables.red};
-    background-color: ${variables.white};
+    color: ${variables.white};
+    background-color: ${variables.yellow};
     padding: 10px;
 `

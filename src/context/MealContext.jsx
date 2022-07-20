@@ -9,9 +9,10 @@ import { useMealReducer } from "./MealContextReducer";
 export const MealContext = createContext({
     selectedDay: 'monday',
     selectDay: () => {},
+    mealTitle: '',
     databaseMeal: [],
     saveSelectedId: () => {},
-    selectedId: null,
+    mealInfo: null,
     resetDatabaseMeal: () => {},
     updateDatabase: () => {},
     loading: false
@@ -19,71 +20,16 @@ export const MealContext = createContext({
 
 export const MealProvider = ({children}) => {
 
-    const {selectedDay, selectDay,saveSelectedId,selectedId} = useMealReducer()
-
-    const {userId,auth,isLoggedIn} = useContext(AuthContext)
-   
+    const {selectedDay, selectDay,saveSelectedId,selectedId,databaseMeal,updateDatabase,resetDatabaseMeal,mealTitle} = useMealReducer()
 
 
-    const [databaseMeal, setDatabaseMeal] = useState([]) 
-
-
-
-useEffect(() => {
-
-    if (!userId) return
-        const getDoc = async() => {
-       
-            await getDocumentData(userId).then(() => {
-               
-                    if(!docData.mealplan){
-                        setDatabaseMeal([]) 
-                    return
-                    }
-                    setDatabaseMeal(docData.mealplan)
-               })
-               
-               .catch(error => {
   
-               })
-           }
-            getDoc()
-    
-   
-   
-},[userId])
 
 
 
-    const resetDatabaseMeal = () => {
-        setDatabaseMeal([])
-    }
-
-
-    const updateDatabase = async() => {
-        if (!userId) return
-    
-            await getDocumentData(userId).then(() => {
-               
-                    if(!docData.mealplan){
-                        setDatabaseMeal([]) 
-                    return
-                    }
-                    setDatabaseMeal(docData.mealplan)
-               })
-               
-               .catch(error => {
-     
-               })
-        
-       
-    
-                
-              
-    }
 
         const value = {
-            selectedDay, selectDay,saveSelectedId,selectedId,databaseMeal,resetDatabaseMeal,updateDatabase
+            selectedDay, selectDay,saveSelectedId,selectedId,databaseMeal,resetDatabaseMeal,updateDatabase,mealTitle
         }
     return(
 

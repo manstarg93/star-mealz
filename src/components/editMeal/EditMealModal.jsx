@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useEffect } from 'react'
+import React, { Fragment, useContext,  } from 'react'
 import { AuthContext } from '../../context/AuthContext'
 import { FoodAddContext } from '../../context/FoodAddContext'
 import { MealContext } from '../../context/MealContext'
@@ -8,7 +8,7 @@ import { CancelDeleteButton, ConfirmDeleteButton, DeleteModalButtonContainer } f
 import { MealTitleInput } from '../mealTitle/MealTitle.styles'
 
 import Modal from '../ui/modal/Modal'
-import { EditFormGroup, EditModalContainer, EditTitle, MealCalorieInput } from './EditMealModal.styles'
+import { EditModalContainer, EditTitle, MealCalorieInput } from './EditMealModal.styles'
 
 const EditMealModal = () => {
 
@@ -41,7 +41,7 @@ const EditMealModal = () => {
       const EditItemHandler = (selectedMeal) => {
 
       updateMealHandler(selectedId,userId,selectedMeal)
-            updateDatabase()
+            updateDatabase(userId)
             showEditModalHandler()
           
        

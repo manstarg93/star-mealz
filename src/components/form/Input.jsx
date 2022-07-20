@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { ArrowDownContainer, InputContainer, InputFormGroup, InputLabel, SelectContainer,SelectInput } from './Input.styles'
 import {ReactComponent as ArrowDown} from '../../assets/arrowDown.svg'
 export const Input = (props) => {

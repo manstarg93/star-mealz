@@ -1,12 +1,9 @@
-import React, { useContext, useEffect } from 'react'
-import { AuthContext } from '../../context/AuthContext'
-import { FoodAddContext } from '../../context/FoodAddContext'
-import { addDocumentToCollection, docData } from '../../util/firebase.utils'
-import SelectDay from '../selectDay/SelectDay'
+import React from 'react'
 
 
 
-import { MealContainer, MealListItemsContainer, MyMealLists, MealListTitle, SelectDayInput } from './Meal.styles'
+
+import { MealContainer, MealListItemsContainer, MyMealLists,  SelectDayInput } from './Meal.styles'
 import MealItems from './MealItems'
 
 const Meal = () => {

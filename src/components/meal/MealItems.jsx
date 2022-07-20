@@ -1,29 +1,32 @@
-import React, { Fragment, useContext, useEffect, useState} from 'react'
+import React, { useContext} from 'react'
 import { MealContext } from '../../context/MealContext';
-import { AddMealContainer, CalDelEdit, MealCal, MealCrudContainer, MealItemsContainer, MealItemsHeader, MealItemsHeading, MealItemsLi, MealItemsUl,  TotalWeight, TotalWeightContainer } from './MealItems.styles'
+import { AddMealContainer, CalDelEdit, MealCal, MealCrudContainer, MealItemsContainer, MealItemsHeader, MealItemsHeading, MealItemsLi, MealItemsUl,  TotalWeight, TotalWeightContainer, ViewRecipie } from './MealItems.styles'
 
 import DeleteButton from '../deleteButtton/DeleteButtton';
 import EditIcon from '../editMeal/EditIcon';
-import { docData } from '../../util/firebase.utils';
 import { UiContext } from '../../context/UiContext';
-import { FoodAddContext } from '../../context/FoodAddContext';
+
+
+
+import {useNavigate} from 'react-router-dom'
 
 const MealItems = props => {
 
-    const {selectedDay,databaseMeal,saveSelectedId} = useContext(MealContext)
+    const {selectedDay,saveSelectedId,databaseMeal} = useContext(MealContext)
    const {showEditModalHandler} = useContext(UiContext)
-   const {selectMealWeight,foodAddingValues, mealTitleHandler,setMealModalHandler} = useContext(FoodAddContext)
    let mealPlanbyday;
-
+const navigate = useNavigate()
    const editItemHandler  =(mappedMeal) => {
 
-      setMealModalHandler(mappedMeal)
       saveSelectedId(mappedMeal.id)
       showEditModalHandler()
-
-      
   }
 
+  const viewRecipieHandler = (mealTitle) => {
+     
+
+     navigate(`/myrecipies/${mealTitle.toLowerCase()}`)
+  }
 
 
 
@@ -51,14 +54,17 @@ const MealItems = props => {
             <MealItemsLi >
                {mappedMeal.mealTitle}
             </MealItemsLi>
+            <MealItemsLi >
+            {mappedMeal.selectedWeight}Kcal
+    
+            </MealItemsLi>
             <MealItemsLi>
                <CalDelEdit>
                   <MealCal>
-                  {mappedMeal.selectedWeight}Kcal
+                  <ViewRecipie onClick={() => viewRecipieHandler(mappedMeal.mealTitle)}>Recipie</ViewRecipie>
                   </MealCal>
-             
                <MealCrudContainer>
-          <DeleteButton id={mappedMeal.id}/>
+          <DeleteButton id={mappedMeal.id} mealTitle={mappedMeal.mealTitle}/>
            
            <EditIcon onClick={() => editItemHandler(mappedMeal)}/>
            
@@ -85,6 +91,7 @@ const MealItems = props => {
             <MealItemsHeading>Occasion</MealItemsHeading>
             <MealItemsHeading>Title</MealItemsHeading>
             <MealItemsHeading>Calories </MealItemsHeading>
+            <MealItemsHeading>Recipie </MealItemsHeading>
         </MealItemsHeader>
         {mealPlanbyday}
        <TotalWeightContainer

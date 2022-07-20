@@ -1,12 +1,20 @@
 import styled from  'styled-components'
 import { device } from '../../styles/mediaquery'
-import { variables } from '../../styles/variables'
+
 import SelectDay from '../selectDay/SelectDay'
 
 
 export const MealContainer = styled.div`
-    width: 90%;
-    margin: 0 auto;
+ width: 100%;
+ margin: 0 auto;
+padding: 0 10px 0 10px;
+
+@media ${device.tablet}{
+    width: 80%;
+    
+}
+
+
 `
 
 export const SelectDayInput = styled(SelectDay)`
