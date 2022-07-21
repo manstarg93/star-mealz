@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { useParams } from 'react-router'
 import MySelectedRecipie from '../../components/myRecipieMeal/MySelectedRecipie'
+import LoadingSpinner from '../../components/ui/loading/LoadingSpinner'
 import { AuthContext } from '../../context/AuthContext'
 import { RecipieContext } from '../../context/RecipieContext'
 import { LoadingContainer } from './MyRecipies.styles'
@@ -12,7 +13,6 @@ const SelectedMealRecipie = () => {
   const {userId} = useContext(AuthContext)
 
   const params = useParams()
-console.log(params)
   useEffect(() => {
   
     getSelectedRecipieHandler(userId, params.dishTitle.toLowerCase(), params.title.toLowerCase())
@@ -20,7 +20,7 @@ console.log(params)
   return (
     <SelectedMealRecipieContainer>
         
-        {loading && <LoadingContainer>...Loading</LoadingContainer> }
+        {loading && <LoadingSpinner/> }
         <MySelectedRecipie/>
     </SelectedMealRecipieContainer>
   )

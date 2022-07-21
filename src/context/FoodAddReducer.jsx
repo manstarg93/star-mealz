@@ -267,13 +267,27 @@ resetFeedbackMessage()
                 })
         }
 
-        const removeMealHandler = async(selectedId, userId) => {
+        const removeMealHandler = async(selectedId, userId, mealTitle) => {
 
             const updatedMeal =  docData.mealplan.filter(meal => meal.id !== selectedId)
             addDocToCollectionHandler(userId,updatedMeal,'meal removed successfully')
             resetFeedbackMessage()
          
-
+            if(recipieDocument.recipies === undefined){
+                return
+            }
+            const filteredDish = recipieDocument.recipies.filter(recipie => recipie.title.toLowerCase() !== mealTitle.toLowerCase())
+        
+            await getRecipiesFromDocument(userId).then(() => {
+                if(recipieDocument !== undefined){
+                    addMealRecipiesToDocument(userId,filteredDish)
+              
+                }
+             
+            })
+            .catch((error)=>{
+             
+            })
 
             
         }

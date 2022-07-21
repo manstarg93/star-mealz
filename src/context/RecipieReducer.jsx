@@ -175,6 +175,9 @@ if(recipieDocument !== undefined && !existingRecipie){
               updateRecipies(false,mappedDish,actionType.ADD_MEAL_DISHES)
 
           })
+          .catch(() => {
+              
+          })
 
        
 

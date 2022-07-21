@@ -1,12 +1,12 @@
-import React, { useContext } from 'react'
+import React, { Fragment, useContext } from 'react'
 import { useNavigate,useParams } from 'react-router';
 import { RecipieContext } from '../../context/RecipieContext';
-import { DishImage, DishTitle, GoBackContainer, ImageTitleContainer, MyDishDescription, MyDishList, MyDishTitle, MySelectedDishContainer, MySelectedDishMainContainer, NoRecipieMessage, ReturnButton, ViewRecipie, ViewRecipieContainer } from './MySelectedDish.styles'
-import { GoBackButton, GoBackButtonContainer } from './MySelectedRecipie.styles';
+import { DishImage, DishTitle, ImageTitleContainer, MyDishDescription, MyDishList, MyDishTitle, MySelectedDishContainer, MySelectedDishMainContainer, NoRecipieMessage } from './MySelectedDish.styles'
+
 
 const MySelectedDish = () => {
     const {dishes,loading} =  useContext(RecipieContext)
-console.log(dishes)
+
     let myDishesList;
 
    const navigate = useNavigate()
@@ -17,13 +17,11 @@ console.log(dishes)
         navigate(`/myrecipies/${params.title.toLowerCase()}/${label.toLowerCase()}`)
     }
 
-    const goBackToRecipie = () => {
-        navigate('/myrecipies')
-    }
+
     myDishesList = dishes.map(dish => {
-        console.log(dish)
+      
         const {recipies} = dish
-        console.log(recipies)
+      
         if(recipies.length === 0 && !loading){
             return <NoRecipieMessage key={dish.title} >No Recipie available for this meal</NoRecipieMessage>
         }
@@ -51,8 +49,10 @@ console.log(dishes)
     
   return (
       <MySelectedDishMainContainer>
-            <MyDishTitle>Not sure what type of <span>{params.title}</span> to cook?</MyDishTitle>
-            <MyDishDescription>We've got you covered with our variety of delicious dishes for your specific meal plan. </MyDishDescription>
+          {dishes.length !== 0 && <Fragment>
+             <MyDishTitle>Not sure what type of <span>{params.title}</span> to cook?</MyDishTitle>
+            <MyDishDescription>We've got you covered with our variety of delicious dishes for your specific meal plan. </MyDishDescription> </Fragment>}
+            
   <MySelectedDishContainer>
      
        {myDishesList}

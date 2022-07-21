@@ -1,19 +1,21 @@
 
-import { getDoc } from 'firebase/firestore';
-import { Fragment, useContext, useEffect } from 'react';
-import { Route, Routes, useParams } from 'react-router';
+
+import React, { Fragment, Suspense, useContext, useEffect } from 'react';
+import { Route, Routes} from 'react-router';
 import {AppContainer} from  './App.styles.jsx';
-import LoginRegisterModal from './components/loginRegister/LoginRegisterModal.jsx';
 import { AuthContext } from './context/AuthContext.jsx';
-import Home from './routes/home/Home.jsx';
-import MealPlan from './routes/mealplan/MealPlan.jsx';
-import Navigation from './routes/navigation/Navigation.jsx';
 
-import MyRecipies from './routes/myrecipie/MyRecipies.jsx';
-import Favourites from './routes/favourites/Favourites.jsx';
 
-import SelectedMealDishes from './routes/myrecipie/SelectedMealDishes.jsx'
-import SelectedMealRecipie from './routes/myrecipie/SelectedMealRecipie.jsx';
+const LoadingSpinner = React.lazy(() => import('./components/ui/loading/LoadingSpinner.jsx'))
+const LoginRegisterModal = React.lazy(() => import('./components/loginRegister/LoginRegisterModal.jsx'))
+const Home = React.lazy(() => import('./routes/home/Home.jsx'))
+const MealPlan = React.lazy(() => import('./routes/mealplan/MealPlan.jsx'))
+const Navigation = React.lazy(() => import('./routes/navigation/Navigation.jsx'))
+const MyRecipies = React.lazy(() => import('./routes/myrecipie/MyRecipies.jsx'))
+const SelectedMealDishes = React.lazy(() => import('./routes/myrecipie/SelectedMealDishes.jsx'))
+const SelectedMealRecipie = React.lazy(() => import('./routes/myrecipie/SelectedMealRecipie.jsx'))
+
+
 
 
  const App = () => {
@@ -43,6 +45,7 @@ import SelectedMealRecipie from './routes/myrecipie/SelectedMealRecipie.jsx';
 
   return (
     <AppContainer>
+      <Suspense fallback={<LoadingSpinner/>}>
       <Routes>
         <Route path='/' element={<Navigation/>}>
         <Route index element={<Home/>}/>
@@ -57,6 +60,8 @@ import SelectedMealRecipie from './routes/myrecipie/SelectedMealRecipie.jsx';
         <Route path='*' element={<p>404 Page does not exist</p>}/> 
       </Routes>
       <LoginRegisterModal/>
+      </Suspense>
+  
     </AppContainer>
   );
 }

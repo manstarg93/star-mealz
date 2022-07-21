@@ -1,6 +1,7 @@
 import React, {  useContext, useEffect } from 'react'
 import { useParams } from 'react-router'
 import MySelectedDish from '../../components/myRecipieMeal/MySelectedDish'
+import LoadingSpinner from '../../components/ui/loading/LoadingSpinner'
 import { AuthContext } from '../../context/AuthContext'
 import { RecipieContext } from '../../context/RecipieContext'
 import { LoadingContainer } from './MyRecipies.styles'
@@ -22,7 +23,7 @@ const SelectedMealDishes = () => {
   return (
     <SelectedMealDishesContainer>
 
-{loading && <LoadingContainer>...Loading</LoadingContainer> }
+{loading && <LoadingSpinner/> }
 
 <MySelectedDish/>
     </SelectedMealDishesContainer>

@@ -35,7 +35,7 @@ let checkContainer;
     checkContainer = <h4>No Recipie for this Dish</h4>
   }
   if(SelectedRecipie !== null){
-    console.log(SelectedRecipie)
+   
     const [{label,image,ingredientLines,calories,dietLabels,totalWeight,mealType,healthLabels}] = SelectedRecipie
     
     checkContainer =   
@@ -43,10 +43,10 @@ let checkContainer;
      <RecipieTitle>{label}</RecipieTitle>
      <InnerSelectedRecipie>
     
-       <MySelectedRecipieImageContainer>
+
        
        <ImageContainer src={image}/>
-       </MySelectedRecipieImageContainer>
+      
         
          
          <InstructionIngredientsContainer>

@@ -14,25 +14,27 @@ const DeleteModal = () => {
     const {selectedId,updateDatabase,mealTitle} = useContext(MealContext)
     const {showDeleteWarningModal, showdeletewarninghandler} = useContext(UiContext)
     const {userId} = useContext(AuthContext)
-    const {removeRecipieHandler} = useContext(RecipieContext)
+    const {getMealRecipieHandler} = useContext(RecipieContext)
   
     const deletewarninghandler =  () => {
         showdeletewarninghandler()
     }
 
     const deleteItemHandler = async () => {
-        await removeMealHandler(selectedId,userId).then(() => {
+        await removeMealHandler(selectedId,userId,mealTitle).then(() => {
             updateDatabase(userId)
+            getMealRecipieHandler(userId)
+            // removeRecipieHandler(userId, mealTitle)
         })
 
-       removeRecipieHandler(userId, mealTitle)
+       
 
         showdeletewarninghandler()
             }
   return (
     <Modal close={showdeletewarninghandler} show={showDeleteWarningModal}>
         <DeleteButtonContainer>
-            <DeleteModalHeader>Are you sure you want to remove meal?</DeleteModalHeader>
+            <DeleteModalHeader>Are you sure you want to remove {mealTitle ? mealTitle : 'meal'}</DeleteModalHeader>
            <DeleteModalButtonContainer>
                <CancelDeleteButton onClick={deletewarninghandler}>Cancel</CancelDeleteButton>
                <ConfirmDeleteButton onClick={deleteItemHandler}>Confirm</ConfirmDeleteButton>

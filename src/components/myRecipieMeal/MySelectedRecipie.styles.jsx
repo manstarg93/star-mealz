@@ -25,35 +25,11 @@ color: ${variables.white};
 width: 100%;
 `
 
-export const InnerSelectedRecipie = styled(CardContainer)`
-display: flex;
-justify-content: center;
-align-items: center;
-flex-wrap: wrap;
-
-height: 100%;
-
-@media ${device.laptop}{
-    
-    flex-wrap: nowrap;
-}
-
-`
 
 
 
-export const InstructionIngredientsContainer = styled.div`
-min-height: 300px;
-overflow: auto;
-width: 100%;
-position: relative;
 
-@media ${device.laptop}{
-    max-height: 350px;
-    min-height: 350px;
-    flex-wrap: nowrap;
-}
-`
+
 
 export const InstructionIngredientNav = styled.div`
 
@@ -82,27 +58,51 @@ align-items: flex-start;
 cursor: pointer;
 `
 
+
+export const InnerSelectedRecipie = styled(CardContainer)`
+display: flex;
+justify-content: center;
+align-items: center;
+flex-wrap: wrap;
+
+height: 100%;
+
+@media ${device.laptop}{
+    
+    flex-wrap: nowrap;
+}
+
+`
+
 export const ImageContainer = styled.img`
     width: 100%;
 height: 100%;
     filter: brightness(50%);
+    min-height: 300px;
 
     @media ${device.laptop}{
-    max-height: 350px;
-    min-height: 350px;
+    max-height: 300px;
+    min-height: 300px;
     flex-wrap: nowrap;
 }
 
 `
 
 
-export const MySelectedRecipieImageContainer = styled.div`
+export const InstructionIngredientsContainer = styled.div`
+min-height: 300px;
+overflow: auto;
+width: 100%;
+
+
+@media ${device.laptop}{
+    max-height: 300px;
     min-height: 300px;
-    width: 100%;
-    position: relative;
-    
- 
+    flex-wrap: nowrap;
+}
 `
+
+
 
 export const RecipieTitle = styled.h2`
 font-size: 1.8rem;
@@ -110,7 +110,10 @@ text-align: start;
 /* position: absolute; */
 top: 0;
 text-align: center;
-border: solid 1px ${variables.blue};
+box-shadow: ${variables.boxShadow};
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+border: solid 1px ${variables.gray};
 width: 100%;
 color: ${variables.blue};
 z-index: 8;
@@ -133,7 +136,7 @@ width: 100%;
 
 
 
-export const InstructionIngredientContainer = styled.ul`
+export const InstructionIngredientContainer = styled.div`
    padding: 0;
     max-height: 100%;
 `
