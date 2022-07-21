@@ -115,9 +115,9 @@ export const MealItemsUl = styled.ul`
         color: ${variables.darkGrey};
         fill: ${variables.darkGrey};
     }
-    &:hover  > ${MealItemsLi} > ${CalDelEdit} > ${MealCrudContainer}{
+    /* &:hover  > ${MealItemsLi} > ${CalDelEdit} > ${MealCrudContainer}{
         display: flex;  
-    }
+    } */
    
 
     @keyframes slideIn {
@@ -135,6 +135,7 @@ export const ViewRecipie = styled(Button)`
     color: ${variables.orange};
     /* box-shadow: none; */
     font-weight: bold;
+    z-index: 99;
 
 `
 

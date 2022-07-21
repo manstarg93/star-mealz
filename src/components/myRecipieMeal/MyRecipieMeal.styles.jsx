@@ -25,12 +25,14 @@ export const NoRecipie = styled.h1`
 
 
 export const RecipieMealsList = styled(CardContainer)`
-height: 250px;
-width: 300px;
+height: max-content;
+width: 250px;
+text-align: center;
 display: flex;
 flex-direction: column;
 justify-content: space-between;
-background-color: ${variables.lightGray};
+background-color: ${variables.white};
+
 cursor: pointer;
 `
 
@@ -48,11 +50,10 @@ position: relative;
 
     export const RecipieMealTitle = styled.h1`
         
-        position: absolute;
+       background-color: ${variables.blue};
+       width: 100%;
         color: ${variables.white};
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        padding: 10px;
         text-align: center;
         font-size: 1.6rem;
         text-transform: uppercase;
@@ -60,7 +61,7 @@ position: relative;
     `
 
     export const ViewDishesContainer = styled.div`
-        width: 40%;
+        width: 100%;
         margin: 10px auto;
 
     `
@@ -69,8 +70,8 @@ position: relative;
 
     export const ViewDishes = styled(Button)`
         
-
+        border: solid 1px ${variables.blue};
         background-color: ${variables.white};
-        color: ${variables.green}
+        color: ${variables.blue}
     `
 

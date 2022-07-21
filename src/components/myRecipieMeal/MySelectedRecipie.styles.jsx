@@ -107,13 +107,15 @@ export const MySelectedRecipieImageContainer = styled.div`
 export const RecipieTitle = styled.h2`
 font-size: 1.8rem;
 text-align: start;
-position: absolute;
+/* position: absolute; */
 top: 0;
-left: 0;
-color: ${variables.white};
+text-align: center;
+border: solid 1px ${variables.blue};
+width: 100%;
+color: ${variables.blue};
 z-index: 8;
 padding: 10px;
-background-color: ${variables.yellow};
+background-color: ${variables.white};
 margin: 0;
 
 `

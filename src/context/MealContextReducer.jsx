@@ -12,13 +12,15 @@ const initialState = {
     selectedDay: currentDay,
     selectedId: null,
     databaseMeal: [],
-    mealTitle: ''
+    mealTitle: '',
+    mealinfo: null
 }
 
 const actionType = {
   SELECT_DAY: ' SELECT_DAY',
     UPDATE_DATABASE_MEAL: ' UPDATE_DATABASE_MEAL',
-  SAVE_SELECTED_ID: 'SAVE_SELECTED_ID'
+  SAVE_SELECTED_ID: 'SAVE_SELECTED_ID',
+  SAVE_MAPPED_MEAL: 'SAVE_MAPPED_MEAL'
 }
 
 const mealReducer = (state, action) => {
@@ -42,6 +44,11 @@ const mealReducer = (state, action) => {
                     ...state,
                     databaseMeal: payload
                 }
+                case actionType.SAVE_MAPPED_MEAL:
+                return{
+                    ...state,
+                    mealInfo: payload
+                }
         default:
             return state
     }
@@ -51,7 +58,7 @@ const mealReducer = (state, action) => {
 export const useMealReducer = () => {
 
     const [state, dispatch] = useReducer(mealReducer,initialState)
-    const {selectedDay,selectedId,databaseMeal,mealTitle} = state
+    const {selectedDay,selectedId,databaseMeal,mealTitle,mealInfo} = state
 
     const selectDay = (selectedDay) => {
 dispatch({
@@ -115,6 +122,14 @@ const updateDatabase = async(uid) => {
               return
             }
 
+        const saveMappedMeal = (mealInfo) => {
+
+            dispatch({
+                type: actionType.SAVE_MAPPED_MEAL,
+                payload: mealInfo
+            })
+        }
+
     return{
         selectedDay,
         selectDay,
@@ -123,6 +138,8 @@ const updateDatabase = async(uid) => {
         updateDatabase,
         resetDatabaseMeal,
         databaseMeal,
-        mealTitle
+        mealTitle,
+        mealInfo,
+        saveMappedMeal
     }
 }

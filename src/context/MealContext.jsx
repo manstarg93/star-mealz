@@ -13,6 +13,7 @@ export const MealContext = createContext({
     databaseMeal: [],
     saveSelectedId: () => {},
     mealInfo: null,
+    saveMappedMeal: () => {},
     resetDatabaseMeal: () => {},
     updateDatabase: () => {},
     loading: false
@@ -20,7 +21,7 @@ export const MealContext = createContext({
 
 export const MealProvider = ({children}) => {
 
-    const {selectedDay, selectDay,saveSelectedId,selectedId,databaseMeal,updateDatabase,resetDatabaseMeal,mealTitle} = useMealReducer()
+    const {selectedDay, selectDay,saveSelectedId,selectedId,databaseMeal,updateDatabase,resetDatabaseMeal,mealTitle,saveMappedMeal,mealInfo} = useMealReducer()
 
 
   
@@ -29,7 +30,7 @@ export const MealProvider = ({children}) => {
 
 
         const value = {
-            selectedDay, selectDay,saveSelectedId,selectedId,databaseMeal,resetDatabaseMeal,updateDatabase,mealTitle
+            selectedDay, selectDay,saveSelectedId,selectedId,databaseMeal,resetDatabaseMeal,updateDatabase,mealTitle,saveMappedMeal,mealInfo
         }
     return(
 

@@ -40,10 +40,11 @@ let checkContainer;
     
     checkContainer =   
  <SelectedRecipieContainer >
-    
+     <RecipieTitle>{label}</RecipieTitle>
      <InnerSelectedRecipie>
+    
        <MySelectedRecipieImageContainer>
-       <RecipieTitle>{label}</RecipieTitle>
+       
        <ImageContainer src={image}/>
        </MySelectedRecipieImageContainer>
         

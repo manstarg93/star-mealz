@@ -27,16 +27,11 @@ const goToSelectedMealDish = (title) => {
 
     myRecipieMealsList = recipies.map(recipie => {
         return(
-            <RecipieMealsList key={recipie.title}>
-           
-                <RecipieHeaderDesign>
+            <RecipieMealsList onClick={() => goToSelectedMealDish(recipie.title)} key={recipie.title}>
                 <RecipieMealTitle>{recipie.title}</RecipieMealTitle>
-                </RecipieHeaderDesign>
-                
-                
-                
                 <ViewDishesContainer>
-                <ViewDishes onClick={() => goToSelectedMealDish(recipie.title)}>View Dishes</ViewDishes>
+                
+                <ViewDishes >View Dishes</ViewDishes>
                 </ViewDishesContainer>
                 
             

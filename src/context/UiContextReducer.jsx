@@ -4,14 +4,16 @@ import { useReducer } from "react";
 const initialState = {
     showDeleteWarningModal: false,
     showEditModal: false,
-    showLoginSignUpModal: false
+    showLoginSignUpModal: false,
+    showEditDeleteModal: false
 }
 
 const actionTypes = {
     SHOW_DELETE_WARNING_MODAL: 'SHOW_DELETE_WARNING_MODAL',
     SHOW_EDIT_MODAL: 'SHOW_EDIT_MODAL',
     CLOSE_MODAL: 'CLOSE_MODAL',
-    SHOW_LOGIN_SIGNUP: 'SHOW_LOGIN_SIGNUP'
+    SHOW_LOGIN_SIGNUP: 'SHOW_LOGIN_SIGNUP',
+    SHOW_EDIT_DELETE_MODAL: 'SHOW_EDIT_DELETE_MODAL'
 }
 
 const uiReducer = (state, action) => {
@@ -30,14 +32,13 @@ const uiReducer = (state, action) => {
                     ...state,
                     showEditModal: payload
                 }
-                case actionTypes.CLOSE_MODAL:
+                case actionTypes.SHOW_EDIT_DELETE_MODAL:
             
                     return{
                         ...state,
-                        showEditModal: payload.closeEditModal,
-                        showDeleteWarningModal: payload.closeeDeleteModal,
-                        showLoginSignUpModal: payload.closeloginSignUpModal
+                        showEditDeleteModal: payload
                     }
+            
                     case actionTypes.SHOW_LOGIN_SIGNUP:
             
                         return{
@@ -54,7 +55,7 @@ const uiReducer = (state, action) => {
 
 export const useUiReducer = () => {
 
-    const [{showDeleteWarningModal,showEditModal,showLoginSignUpModal}, dispatch] = useReducer(uiReducer,initialState)
+    const [{showDeleteWarningModal,showEditModal,showLoginSignUpModal,showEditDeleteModal}, dispatch] = useReducer(uiReducer,initialState)
 
     const showdeletewarninghandler = () => {
         dispatch({
@@ -68,19 +69,14 @@ export const useUiReducer = () => {
                     payload: !showEditModal
                 })
                     }
-
-                    const closeModal = () => {
-                        const closePayload= {
-                            closeEditModal: false,
-                            closeeDeleteModal: false,
-                            closeloginSignUpModal: false
-                        }
+                    const showEditDeleteModalHandler = () => {
                         dispatch({
-                            type: actionTypes.CLOSE_MODAL,
-                            payload: closePayload
+                            type: actionTypes.SHOW_EDIT_DELETE_MODAL,
+                            payload: !showEditDeleteModal
                         })
-                    }
+                            }
 
+          
                     const showloginSignUpHandler = () => {
 
 
@@ -94,8 +90,10 @@ showDeleteWarningModal,
 showdeletewarninghandler,
 showEditModalHandler,
 showEditModal,
-closeModal,
+
 showLoginSignUpModal,
-showloginSignUpHandler
+showloginSignUpHandler,
+showEditDeleteModal,
+showEditDeleteModalHandler
     }
 }

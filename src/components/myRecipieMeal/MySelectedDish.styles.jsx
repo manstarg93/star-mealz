@@ -32,6 +32,8 @@ export const MyDishDescription = styled.p`
 width: 90%;
 margin: 0 auto;
 padding: 20px 0;
+
+text-align: center;
 `
 
 export const MySelectedDishContainer = styled.div`

@@ -12,8 +12,8 @@ import {useNavigate} from 'react-router-dom'
 
 const MealItems = props => {
 
-    const {selectedDay,saveSelectedId,databaseMeal} = useContext(MealContext)
-   const {showEditModalHandler} = useContext(UiContext)
+    const {selectedDay,saveSelectedId,databaseMeal,saveMappedMeal} = useContext(MealContext)
+   const {showEditModalHandler,showEditDeleteModalHandler} = useContext(UiContext)
    let mealPlanbyday;
 const navigate = useNavigate()
    const editItemHandler  =(mappedMeal) => {
@@ -28,7 +28,12 @@ const navigate = useNavigate()
      navigate(`/myrecipies/${mealTitle.toLowerCase()}`)
   }
 
-
+const editDeleteModalHandler = (mappedMeal) => {
+   console.log(mappedMeal)
+saveSelectedId(mappedMeal.id)
+saveMappedMeal(mappedMeal)
+showEditDeleteModalHandler()
+}
 
   
 
@@ -46,7 +51,7 @@ const navigate = useNavigate()
 
          return(
    
-     <MealItemsUl key={mappedMeal.id}>
+     <MealItemsUl onClick={() => editDeleteModalHandler(mappedMeal)} key={mappedMeal.id}>
             <MealItemsLi >
                
                {mappedMeal.selectedOccasion} 
@@ -63,12 +68,12 @@ const navigate = useNavigate()
                   <MealCal>
                   <ViewRecipie onClick={() => viewRecipieHandler(mappedMeal.mealTitle)}>Recipie</ViewRecipie>
                   </MealCal>
-               <MealCrudContainer>
+               {/* <MealCrudContainer>
           <DeleteButton id={mappedMeal.id} mealTitle={mappedMeal.mealTitle}/>
            
            <EditIcon onClick={() => editItemHandler(mappedMeal)}/>
            
-        </MealCrudContainer>
+        </MealCrudContainer> */}
                </CalDelEdit>
              
             </MealItemsLi>

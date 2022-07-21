@@ -1,39 +1,60 @@
-import React, { Fragment, useContext } from 'react'
-import { DisplayName, NavigationContainer, NavLogoContainer, NonAuthContainer } from './Navigation.styles'
+import React, { Fragment, useContext, useState } from 'react'
+import { CloseNavMobileContainer,MobileNavDefault,NavigationContainer, NavLogoContainer, NavLogoContainerMobile, NonAuthContainer, OpenNavIconContainer, WelcomeContainerHome } from './Navigation.styles'
 import NavigationLink from './NavigationLink'
-
+import {ReactComponent as CloseNavIcon} from '../../assets/close.svg'
+import {ReactComponent as OpenNavIcon} from '../../assets/hamburgermenu1.svg'
 import Logo from '../logo/Logo'
 import { AuthContext,  } from '../../context/AuthContext'
+import { WelcomeContainer } from './NavigationLink.styles'
 
 
 const Navigation = () => {
-  const {userData,auth} = useContext(AuthContext)
+
+
+  const {userData} = useContext(AuthContext)
+const [closeNav, setCloseNav] = useState(true)
+   const closeNavHandler = () => {
+setCloseNav(closeNav => closeNav = !closeNav)
+  }
 
   return (
+
     <Fragment>
-       {auth === null && <NonAuthContainer>
-       
-      <Logo/>
+      <MobileNavDefault closeNav={closeNav}>
+      <NavLogoContainerMobile>
+    <Logo/>
     
-        <NavigationLink authData/>
-        </NonAuthContainer>}
+   
+    </NavLogoContainerMobile>
 
+    <OpenNavIconContainer>
+      <OpenNavIcon onClick={closeNavHandler}/>
+    </OpenNavIconContainer>
+      </MobileNavDefault>
 
-        {userData !== null && <NavigationContainer>
+      <NavigationContainer closeNav={closeNav}>
      
-      
-     <NavLogoContainer>
-     <Logo/>
-     {userData !== null &&  <DisplayName>Welcome<span>{ userData.displayName.toUpperCase()}</span></DisplayName>}
-     </NavLogoContainer>
+     <CloseNavMobileContainer>
+     <NavLogoContainerMobile>
+    <Logo/>
+    
+    </NavLogoContainerMobile>
+    {userData !== null &&  <WelcomeContainerHome>Welcome<span>{ userData.displayName.toUpperCase()}</span></WelcomeContainerHome>} 
+       <CloseNavIcon onClick={closeNavHandler}/>
+     </CloseNavMobileContainer>
+    <NavLogoContainer>
+    <Logo/>
+    
+    </NavLogoContainer>
+    
+      {/* <MealSearch/> */}
+      <NavigationLink closeNavHandler ={closeNavHandler} authData/>
+   
      
-       {/* <MealSearch/> */}
-       <NavigationLink authData/>
-    
-      
-    
-   </NavigationContainer>}
+   
+  </NavigationContainer>
     </Fragment>
+       
 
     
    

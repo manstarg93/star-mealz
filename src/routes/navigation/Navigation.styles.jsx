@@ -5,10 +5,10 @@ import { variables } from '../../styles/variables';
 
 
 export const NavigationContainer = styled.div`
-    
-
-    @media ${device.laptop}{
-        width: 100%;
+  
+    width: 100%;
+    @media ${device.tablet}{
+        
     }
 
    

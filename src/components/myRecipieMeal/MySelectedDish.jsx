@@ -52,7 +52,7 @@ console.log(dishes)
   return (
       <MySelectedDishMainContainer>
             <MyDishTitle>Not sure what type of <span>{params.title}</span> to cook?</MyDishTitle>
-            <MyDishDescription>We've got you covered with our variety of delicious dishes for your specific meal plan, Which we believe will help keep you and your family excited to try something each day. </MyDishDescription>
+            <MyDishDescription>We've got you covered with our variety of delicious dishes for your specific meal plan. </MyDishDescription>
   <MySelectedDishContainer>
      
        {myDishesList}

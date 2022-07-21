@@ -20,11 +20,14 @@ useEffect(() => {
   return (
     <MyRecipieContainer>
       <MyRecipieMealTitle>
-      Lets try different dishes 
+        Your potential meal is stored here 
       </MyRecipieMealTitle>
       <MyRecipieMealDescription>
-      Vivamus tempor aliquet dui, nec lacinia purus pellentesque vitae. Vivamus sit amet libero urna. Proin sagittis tellus ac erat fringilla, accumsan congue sem sollicitudin. Nunc in ligula dapibus, <br></br> <br></br>Pellentesque libero vel, rutrum lacus. Curabitur luctus, nulla sed pulvinar dapibus, velit mauris dapibus felis, ut malesuada est turpis ut lectus. 
+      There is no longer a need to worry about what to cook for dinner, Most meal plans also have a variety of dish available to pick from. 
+      </MyRecipieMealDescription><MyRecipieMealDescription>
+       Try selecting a meal below to see the list of dishes available for you.
       </MyRecipieMealDescription>
+     
 
         {loading ? <LoadingContainer>...Loading</LoadingContainer> : null}
 <MyRecipieMeal />
