@@ -1,6 +1,7 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Your simple and easy to use meal planner web app built using Reactjs, context state management and firebase.
+link to app here: https://starmealz.web.app/
 
 ## Available Scripts
 
