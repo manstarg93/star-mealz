@@ -3,8 +3,7 @@ import { FavouritesContainer } from './Favourites.styles'
 
 const Favourites = () => {
   return (
-   <FavouritesContainer>
-       
+   <FavouritesContainer> 
    </FavouritesContainer>
   )
 }
