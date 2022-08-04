@@ -1,5 +1,5 @@
 
-import React, { useContext } from 'react'
+import React from 'react'
 
 import { AuthPromptButton, AuthPromptContainer, AuthPromptTitle } from './AuthPrompt.styles'
 import {ReactComponent as GoogleIcon} from '../../assets/googleIcon.svg'

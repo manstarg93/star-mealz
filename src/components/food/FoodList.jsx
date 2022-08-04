@@ -5,15 +5,10 @@ import { AuthContext } from '../../context/AuthContext'
 import { FoodAddContext } from '../../context/FoodAddContext'
 import { RecipieContext } from '../../context/RecipieContext'
 import { UiContext } from '../../context/UiContext'
-import AddMeal from '../addMeal/AddMeal'
-import ClearMeal from '../clearMeal/ClearMeal'
-import MealTitle from '../mealTitle/MealTitle'
-import SelectMealDay from '../selectMealDay/SelectMealDay'
-import SelectMealOccasion from '../selectMealOccasion/SelectMealOccasion'
-import SelectMealWeight from '../selectMealWeight/SelectMealWeight'
 
 
-import {  AddRemoveContainer, FoodListContainer, FoodListItems, MealSearchText, MealSearchTextContainer } from './FoodList.styles'
+
+import { FoodListContainer, FoodListItems,} from './FoodList.styles'
 
 
 
@@ -44,30 +39,12 @@ const foodId = Math.random(3)
 
   return (
     <FoodListContainer onSubmit={addMealHandler}> 
-       
-      {/* <FoodListItems>
-    
-    <SelectMealDay/>
 
-    </FoodListItems> */}
        <FoodListItems>
     
        
        </FoodListItems>
 
-    
-
-      
-       {/* <FoodListItems>
-          <SelectMealOccasion/>
-       </FoodListItems>
-
-       
-           <AddRemoveContainer>
-           <ClearMeal />
-           
-        <AddMeal />
-           </AddRemoveContainer> */}
          
       
     </FoodListContainer>

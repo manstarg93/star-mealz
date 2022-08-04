@@ -5,7 +5,7 @@ import { actionTypes } from '../../context/UiContextReducer'
 import { useInput } from '../../hooks/inputHook'
 import { signInAuthWithEmailAndPassword } from '../../util/firebase.utils'
 import EmailAuth from './EmailAuth'
-import { ErrorMessage } from './EmailAuth.styles'
+
 import { EmailInput, EmailLogInButton, EmailLoginFormContainer, EmailLoginInputContainer, ForgotPasswordText } from './EmailLogin.styles'
 import { FeedBackMessageContainer, FeedBackMessageError } from './PasswordResetModal.styled'
 

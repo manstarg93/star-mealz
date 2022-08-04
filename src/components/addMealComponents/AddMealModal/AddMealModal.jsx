@@ -46,10 +46,7 @@ hideMealSearchHandler()
        <MealTitle/>
        <MealSearchResult/>
        </MealSearchContainer>
-      {/* <NextButtonContainer>
-      <NextButton>Next</NextButton>
 
-      </NextButtonContainer> */}
     
        </AddMealModalForm>
        

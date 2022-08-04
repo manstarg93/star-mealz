@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { UiContext } from '../../context/UiContext'
 import {AuthContext} from '../../context/AuthContext'
-import { AddMealButtonContainer, CalorieCountAndNutritionContainer, CaloriesTextContainer, CloseMealAddingIconContainer, FeedBackMessageErrorContainer, FeedBackMessageSuccessContainer, MainNutritionContainer, MealAddingContainer, MealAddingFormContainer, MealAddingHeaderContainer, MealAddingTitle, MinorNutrition, MinorNutritionContainer, Nutrition, NutritionalInformation, NutritionalInformationContainer, NutritionalInformationTitle, NutritionContainer, NutritionSize, SearvingText, ServingAndCalorieCountContainer, ServingCalorieCount, ServingInput, ServingInputContainer, TotalCalories, TotalCaloriesText } from './MealAdding.Styles'
+import { AddMealButtonContainer, CaloriesTextContainer, CloseMealAddingIconContainer, FeedBackMessageErrorContainer, FeedBackMessageSuccessContainer, MainNutritionContainer, MealAddingContainer, MealAddingFormContainer, MealAddingHeaderContainer, MealAddingTitle,  Nutrition, NutritionalInformation, NutritionalInformationContainer, NutritionalInformationTitle, NutritionContainer, NutritionSize, SearvingText, ServingAndCalorieCountContainer, ServingCalorieCount, ServingInput, ServingInputContainer, TotalCalories, TotalCaloriesText } from './MealAdding.Styles'
 import Modal from '../ui/modal/Modal'
 import { actionTypes } from '../../context/UiContextReducer'
 import {ReactComponent as CloseIcon} from '../../assets/close.svg'
@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router'
 
 const MealAdding = () => {
 
-    const {finishAddingMeal, UiToggleHelper,showAddMealModal, showMealSearch,showInitialAddMealModal} = useContext(UiContext)
+    const {finishAddingMeal, UiToggleHelper,showAddMealModal, showMealSearch} = useContext(UiContext)
 const {foodAddingValues,addMeal,verified,feedBackMessage} = useContext(FoodAddContext)
 const {userId} = useContext(AuthContext)
 const [servingInput, setServingInput] = useState(1)

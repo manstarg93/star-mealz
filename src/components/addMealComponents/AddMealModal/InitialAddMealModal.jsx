@@ -1,12 +1,12 @@
 import React, { useContext } from 'react'
-import InitIalAddMeal from './InitialAddMeal'
+
 import { InitialAddMealModalContainer, InitialAddMealModalTitle, InititalAddMealModalDone, OccasionItemModal, OccasionSelectorModalContainer } from './InititalAddMealModal.styled'
 import Modal from '../../ui/modal/Modal'
 import { UiContext } from '../../../context/UiContext'
 import { actionTypes } from '../../../context/UiContextReducer'
 import {ReactComponent as CloseIcon} from '../../../assets/close.svg'
-import { AddMealModalHeaderContainer, AddMealModalTitle, CloseAddMealModalIconContainer } from './AddMealModal.styles'
-import { InitialAddMealTitle, OccasionSelectorAddIconContainer, OccasionSelectorItem, OccasionSelectorMealIconContainer, OccasionSelectorTitle } from './InitialAddMeal.styles'
+import { AddMealModalHeaderContainer,  CloseAddMealModalIconContainer } from './AddMealModal.styles'
+import {  OccasionSelectorAddIconContainer, OccasionSelectorMealIconContainer, OccasionSelectorTitle } from './InitialAddMeal.styles'
 import {ReactComponent as PlusIcon} from '../../../assets/plusIcon.svg'
 
 import {ReactComponent as BreakfastIcon} from '../../../assets/breakfast.svg'
@@ -15,10 +15,10 @@ import {ReactComponent as DinnerIcon} from '../../../assets/dinner.svg'
 import {ReactComponent as SnackIcon} from '../../../assets/snack.svg'
 
 import { FoodAddContext } from '../../../context/FoodAddContext'
-import GoBackIcon from '../../ui/icon/GoBackIcon'
+
 const InitialAddMealModal = () => {
 
-    const {showAddMealModal, UiToggleHelper,showInitialAddMealModal,finishAddingMeal} = useContext(UiContext)
+    const {showAddMealModal, UiToggleHelper,showInitialAddMealModal} = useContext(UiContext)
 
 
     const {selectOccasion} = useContext(FoodAddContext)

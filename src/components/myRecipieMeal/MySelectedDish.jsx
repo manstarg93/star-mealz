@@ -25,7 +25,6 @@ const MySelectedDish = () => {
             return <NoRecipieMessage key={dish.title} >No Recipie available for this meal</NoRecipieMessage>
         }
   
-        // const {recipe} = dish.recipies
        return recipies.map((recipes) => {
         return(
             <MyDishList onClick={() => goToSelectedRecipie(recipes.label)} key={recipes.label} >

@@ -3,7 +3,7 @@ import { AuthContext } from '../../context/AuthContext'
 import { FoodAddContext } from '../../context/FoodAddContext'
 import { MealContext } from '../../context/MealContext'
 import { UiContext } from '../../context/UiContext'
-import { RecipieContext } from '../../context/RecipieContext';
+
 import Modal from '../ui/modal/Modal'
 
 import { CancelDeleteButton, ConfirmDeleteButton, DeleteModalButtonContainer, DeleteModalContainer, DeleteModalHeader } from './DeleteModal.styles'
@@ -14,7 +14,6 @@ const DeleteModal = () => {
     const {selectedId,updateDatabase,mealTitle} = useContext(MealContext)
     const {showDeleteWarningModal,UiToggleHelper} = useContext(UiContext)
     const {userId} = useContext(AuthContext)
-    const {getMealRecipieHandler} = useContext(RecipieContext)
   
     const deletewarninghandler =  () => {
       
@@ -24,8 +23,7 @@ const DeleteModal = () => {
     const deleteItemHandler = async () => {
         await removeMealHandler(selectedId,userId,mealTitle).then(() => {
             updateDatabase(userId)
-            // getMealRecipieHandler(userId)
-            // removeRecipieHandler(userId, mealTitle)
+
             UiToggleHelper(actionTypes.SHOW_DELETE_WARNING_MODAL,showDeleteWarningModal)
         })
 

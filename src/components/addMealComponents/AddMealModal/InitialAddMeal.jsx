@@ -1,5 +1,5 @@
-import React, { useContext, useState } from 'react'
-import { DateSelectorTitle, InitialAddMealContainer, InitialAddMealDateContainer, InitialAddMealTitle, NextIconContainer, OccasionSelectorAddIconContainer, OccasionSelectorContainer, OccasionSelectorIconContainer, OccasionSelectorItem, OccasionSelectorMealIconContainer, OccasionSelectorTitle, PreviousIconContainer } from './InitialAddMeal.styles'
+import React, { useContext } from 'react'
+import {  InitialAddMealContainer, InitialAddMealDateContainer, InitialAddMealTitle, OccasionSelectorAddIconContainer, OccasionSelectorContainer, OccasionSelectorItem, OccasionSelectorMealIconContainer, OccasionSelectorTitle} from './InitialAddMeal.styles'
 import {ReactComponent as PlusIcon} from '../../../assets/plusIcon.svg'
 
 import {ReactComponent as BreakfastIcon} from '../../../assets/breakfast.svg'
@@ -23,7 +23,7 @@ const InitIalAddMeal = () => {
         {mealIcon: <SnackIcon/>, occasion: 'Add Snack', value:'snack',addIcon: <PlusIcon/>}
     ]
 
-    const {showAddMealModal, UiToggleHelper,finishAddingMeal} = useContext(UiContext)
+    const {showAddMealModal, UiToggleHelper} = useContext(UiContext)
 
  
     const getOccasionValue = (value) => {

@@ -4,16 +4,15 @@ import Modal from '../ui/modal/Modal'
 import Input from '../form/Input'
 import { useInput } from '../../hooks/inputHook'
 import {ReactComponent as CloseIcon} from '../../assets/close.svg'
-import { AddMealModalHeaderContainer, AddMealModalTitle, CloseAddMealModalIconContainer } from '../addMealComponents/AddMealModal/AddMealModal.styles'
+
 import { UiContext } from '../../context/UiContext'
 import { actionTypes } from '../../context/UiContextReducer'
-import { getPasswordToUpdate, passwordResetErrorMessage, passwordResetSuccessMessage, resetSuccess, sendUserPasswordResetEmail } from '../../util/firebase.utils'
-import { feedbackMessageUtil } from '../../util/feedbackMessageUtil'
-import { FeedBackMessageErrorContainer } from '../finishAddingMeal/MealAdding.Styles'
+import {passwordResetErrorMessage, passwordResetSuccessMessage, resetSuccess, sendUserPasswordResetEmail } from '../../util/firebase.utils'
+
 const PasswordResetModal = () => {
 
     const {input, InputHandler} = useInput()
-    const {UiToggleHelper, showPasswordReset,showLoginWithEmail} = useContext(UiContext)
+    const {UiToggleHelper, showPasswordReset} = useContext(UiContext)
 
 const [resetEmailAuth, setResetEmailAuth] = useState({
     success: false,

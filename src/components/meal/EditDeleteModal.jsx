@@ -7,7 +7,7 @@ import { DeleteButton,  EditButton, EditDeleteIconContainer, EditDeleteModalCont
 import { actionTypes } from '../../context/UiContextReducer'
 const EditDeleteModal = (props) => {
 
-const {showEditDeleteModalHandler,showEditDeleteModal,UiToggleHelper,showDeleteWarningModal,showEditModal} = useContext(UiContext)
+const {showEditDeleteModal,UiToggleHelper,showDeleteWarningModal,showEditModal} = useContext(UiContext)
 const {saveSelectedId,mealInfo} = useContext(MealContext)
 
     const editItemHandler =() => {

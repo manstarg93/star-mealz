@@ -1,7 +1,7 @@
 import React, { Fragment, useContext, useState } from 'react'
 import { RecipieContext } from '../../context/RecipieContext'
 import {ReactComponent as CheckedIcon} from '../../assets/checkedIcon.svg'
-import { CheckedIconContainer, GoBackButton, GoBackButtonContainer, HealthInformation, ImageContainer, IngredientContainer, InnerSelectedRecipie, InstIngFilterContainer, InstructionContainer, InstructionIngredientContainer, InstructionIngredientNav, InstructionIngredientsContainer,  InstructionTitle, ItemList, ItemListContainer, MySelectedRecipieImageContainer, RecipieDescription, RecipieTitle, SelectedRecipieContainer, ServingKalMealContainer } from './MySelectedRecipie.styles'
+import { CheckedIconContainer, GoBackButton, GoBackButtonContainer, ImageContainer, IngredientContainer, InnerSelectedRecipie, InstIngFilterContainer, InstructionIngredientContainer, InstructionIngredientNav, InstructionIngredientsContainer,  InstructionTitle, ItemList, ItemListContainer, MySelectedRecipieImageContainer, RecipieDescription, RecipieTitle, SelectedRecipieContainer } from './MySelectedRecipie.styles'
 import { useNavigate, useParams } from 'react-router'
 
 const MySelectedRecipie = () => {

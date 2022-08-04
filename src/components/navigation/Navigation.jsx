@@ -3,12 +3,12 @@ import { BannerText, BannerTextDesktop, CloseNavMobileContainer,MobileNavDefault
 import NavigationLink from './NavigationLink'
 import {ReactComponent as CloseNavIcon} from '../../assets/close.svg'
 import {ReactComponent as OpenNavIcon} from '../../assets/hamburgermenu1.svg'
-import Logo from '../logo/Logo'
+
 import { AuthContext,  } from '../../context/AuthContext'
 import { LogoutButton, WelcomeContainer } from './NavigationLink.styles'
 import { signOutOfGoogle } from '../../util/firebase.utils'
 import { useNavigate } from 'react-router'
-import Modal from '../ui/modal/Modal'
+
 
 
 const Navigation = () => {
@@ -64,12 +64,6 @@ setCloseNav(true)
        <CloseNavIcon onClick={closeNavHandler}/>
      </CloseNavMobileContainer>
 
-  
-    {/* <Logo/> */}
-   
- 
-    
-      {/* <MealSearch/> */}
       <NavigationLink closeNavHandler ={closeNavHandler} authData/>
       {auth !== null &&  <LogoutButton onClick={logoutHandler}>Log out</LogoutButton> }
    
