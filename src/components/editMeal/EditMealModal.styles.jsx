@@ -163,12 +163,14 @@ margin-bottom: 40px;
 `
 
 export const NutritionalInformationTitle = styled.div`
-text-align: start;
+text-align: center;
 font-weight: bold;
-border-bottom: solid .5px ${variables.gray};
-border-top: solid .5px ${variables.gray};
-margin-top: 30px;
-padding: 10px 0;
+
+margin-top: 30px ;
+padding: 10px ;
+width: 100%;
+border: ${variables.blue} solid 1px;
+color: ${variables.blue};
 `
 
 

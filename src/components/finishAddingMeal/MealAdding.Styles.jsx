@@ -184,8 +184,9 @@ font-weight: bold;
 margin-top: 30px ;
 padding: 10px ;
 width: 100%;
-background-color: ${variables.blue};
-color: ${variables.white}
+border: ${variables.blue} solid 1px;
+
+color: ${variables.blue};
 `
 
 

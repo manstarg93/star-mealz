@@ -9,6 +9,7 @@ import { FoodAddContext } from '../../context/FoodAddContext'
 import GoBackIcon from '../ui/icon/GoBackIcon'
 import AddMeal from '../addMeal/AddMeal'
 import { MealContext } from '../../context/MealContext'
+import { useNavigate } from 'react-router'
 
 const MealAdding = () => {
 
@@ -18,7 +19,7 @@ const {userId} = useContext(AuthContext)
 const [servingInput, setServingInput] = useState(1)
 const {updateDatabase} = useContext(MealContext)
 
-
+const navigate = useNavigate()
 
 
 
@@ -47,7 +48,7 @@ if(foodAddingValues.selectedMeal){
         occasion: foodAddingValues.selectedOccasion,
         mealInfo: foodAddingValues.selectedMeal
     }
-    console.log(mealValues)
+
     await addMeal(userId, mealValues).then(res => {
         updateDatabase(userId)
     })
@@ -56,8 +57,8 @@ if(foodAddingValues.selectedMeal){
 
     setServingInput(1)
     UiToggleHelper(actionTypes.SHOW_FINISH_ADDING_MEAL, finishAddingMeal)
-    UiToggleHelper(actionTypes.SHOW_INITIAL_ADD_MEAL_MODAL, showInitialAddMealModal)
 
+    navigate('/mealplan')
     
     }
 
