@@ -20,8 +20,12 @@ export const AddMealContainer  = styled.div`
 
 export const AddButton = styled(Button)`
     display: block;
-    background-color: ${variables.white};
-    color: ${variables.blue};
-    border: solid 1px ${variables.blue};
+    background-color: ${variables.blue};
+    color: ${variables.white};
   
+  width: 100%;
+
+  &:hover{
+      opacity: 1;
+  }
 `

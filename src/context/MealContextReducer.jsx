@@ -100,6 +100,7 @@ const updateDatabase = async(uid) => {
                                return 
                             }
                             else{
+                                
                                 dispatch({
                                     type: actionType.UPDATE_DATABASE_MEAL,
                                     payload: docData.mealplan

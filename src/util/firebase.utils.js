@@ -1,11 +1,12 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getAuth, signOut, signInWithRedirect, signInWithPopup, GoogleAuthProvider,createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signOut, signInWithRedirect, signInWithPopup, GoogleAuthProvider,createUserWithEmailAndPassword,signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 import {doc,getDoc, setDoc, getFirestore} from 'firebase/firestore'
 import { useContext } from "react";
+import { feedbackMessageUtil } from "./feedbackMessageUtil";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAtbLfX0zgJbHmkn7lZ9k6FD1h820k8CO8",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: "starmealz.firebaseapp.com",
   projectId: "starmealz",
   storageBucket: "starmealz.appspot.com",
@@ -13,6 +14,12 @@ const firebaseConfig = {
   appId: "1:369381319496:web:210593744592d9ff45897d",
   measurementId: "G-DEF4479ZCZ"
 };
+
+
+
+
+
+
 const firebaseApp = initializeApp(firebaseConfig);
 
 
@@ -20,8 +27,25 @@ const firebaseApp = initializeApp(firebaseConfig);
 
 const googleprovider = new GoogleAuthProvider();
 
-
+export let passwordResetErrorMessage;
+export let passwordResetSuccessMessage;
+export let resetSuccess;
 export const auth = getAuth()
+
+
+export  const sendUserPasswordResetEmail = async (email) => {
+  await sendPasswordResetEmail(auth, email)
+  .then(() => {
+   console.log('email Sent')
+   passwordResetSuccessMessage = 'Email reset link sent successfully '
+   resetSuccess = true
+  })
+  .catch((error) => {
+ 
+    passwordResetErrorMessage = error.message
+    resetSuccess = false
+  });
+}
 
 export const createAuthUserWithEmailAndPassword = async(email,password) => {
   if(!email || !password) return;

@@ -5,6 +5,7 @@ import { variables } from '../../styles/variables'
 export const InputFormGroup = styled.div`
      position: relative;
      width: 100%;
+     z-index: 99;
 `
 
 
@@ -12,7 +13,7 @@ export const InputContainer = styled.input`
 border: solid ${variables.gray} 1px;
     padding: 15px;
     transition: all ease-in-out .3s;
-    border-radius: 5px;
+
    width: 100%;
     &::placeholder{
         color: ${variables.gray};
@@ -43,7 +44,7 @@ align-items: center;
 gap: 10px;
 position: relative;
 border: solid ${variables.gray} 1px;
-border-radius: 5px;
+
 background-color: ${variables.white};
 
 `
@@ -56,6 +57,7 @@ z-index: 9;
 appearance: none;
 width: 100%;
 z-index: 9;
+font-size: 1.6rem;
 
     &:focus-visible{
         outline: none;
@@ -71,7 +73,6 @@ z-index: 9;
 export const ArrowDownContainer = styled.span`
 
     color: ${variables.darkGrey};
-
     padding: 0 10px;
    right: 0;
     z-index: 8;
@@ -79,8 +80,10 @@ export const ArrowDownContainer = styled.span`
 
     svg{
         color: inherit;
-        font-size: 40px;
-        font-weight: bolder;
+        height: 30px;
+
+        width: 30px;
+
         color: inherit;
     }
 `

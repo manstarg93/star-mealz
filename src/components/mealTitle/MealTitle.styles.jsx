@@ -6,5 +6,8 @@ import Input from '../form/Input'
 
 
 export const MealTitleInput = styled(Input)`
- 
+
+
+border-radius: ${props => props.value !== '' && 'none'}
+
 `

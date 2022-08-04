@@ -1,4 +1,5 @@
 
+import axios from "axios";
 import {  useReducer } from "react"
 import { addDocumentToCollection, addMealRecipiesToDocument, docData, getDocumentData, getRecipiesFromDocument, recipieDocument } from "../util/firebase.utils";
 
@@ -8,20 +9,22 @@ import { addDocumentToCollection, addMealRecipiesToDocument, docData, getDocumen
 const days = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'];
             const NewDay =new Date().getDay()
         
-            const currentDay = days[NewDay]
+            let currentDay = days[NewDay] 
+            
 
 
 const initialState = {
 
    
     
-   
+   mealSearchResult: [],
    foodAddingValues: {
-    mealTitle: '',
+    selectedMeal: null,
     selectedOccasion: 'breakfast',
     selectedMealDay: currentDay,
-    selectedWeight: '',
+   
    },
+   mealTitle: '',
     verified: false,
     feedBackMessage: '',
 
@@ -34,6 +37,8 @@ export const useFoodAddReducer = () => {
     const actionType = {
         FOOD_ADDING_VALUES: 'FOOD_ADDING_VALUES',  
         SET_FEEDBACK_MESSAGE: ' SET_FEEDBACK_MESSAGE',
+        SET_MEAL_SEARCH_RESULT: 'SET_MEAL_SEARCH_RESULT',
+        SET_MEAL_TITLE: ' SET_MEAL_TITLE'
     }
     
     const AddFoodReducer = (state, action) => {
@@ -53,19 +58,64 @@ export const useFoodAddReducer = () => {
                     feedBackMessage: payload.message,
                     verified: payload.verified
                 }
+                case actionType.SET_MEAL_SEARCH_RESULT: 
+                return{
+                    ...state,
+                    mealSearchResult: payload
+                }
+                case actionType.SET_MEAL_TITLE: 
+                return{
+                    ...state,
+                    mealTitle: payload
+                }
         
             default:
                 return state
         }
     }
 
-    const [{verified,feedBackMessage,foodAddingValues }, dispatch] = useReducer(AddFoodReducer, initialState)
+    const [{verified,feedBackMessage,foodAddingValues, mealSearchResult,mealTitle }, dispatch] = useReducer(AddFoodReducer, initialState)
 
-        const mealTitleHandler = (mealTitle) => {
+
+
+    const getMealSearchResultHandler = (mealTitle) => {
+        const apiKey = process.env.REACT_APP_USDA_API_KEY
+        
+                    
+        dispatch({
+            type: actionType.SET_MEAL_TITLE,
+            payload: mealTitle
+        })
+
+        if(mealTitle !== ''){
+            const query = mealTitle.toLowerCase()
+            
+axios.get(`https://api.nal.usda.gov/fdc/v1/foods/search?query=${query}&pageSize=3&api_key=${apiKey}`,{
+             
+                }).then((res) => {
+     
+      
+                  dispatch({
+                      type: actionType.SET_MEAL_SEARCH_RESULT,
+                        payload: res.data.foods
+                  })
+                }).catch((error) => {
+                console.log(error)
+                })
+        }
+        
+           
+    }
+
+        const mealTitleHandler = (meal) => {
+
+
+
 
             const updateTitle = {
                 ...foodAddingValues,
-                mealTitle
+                selectedMeal: meal
+               
             }
 
             dispatch({
@@ -139,10 +189,8 @@ const resetFeedbackMessage = () => {
 }
      
 
-        const addMeal = async (userId,foodId) => {
-           
-            
-       let verified;
+        const addMeal = async (userId,meal) => {
+             let verified;
        let updatedMeals;
    
 
@@ -152,14 +200,7 @@ const resetFeedbackMessage = () => {
 
             if(docData === undefined){
             
-                const meal = {
-                    id: Math.random(1),
-                    mealTitle: foodAddingValues.mealTitle,
-                                selectedOccasion: foodAddingValues.selectedOccasion,
-                               selectedWeight: foodAddingValues.selectedWeight,
-                                selectedMealDay: foodAddingValues.selectedMealDay
-            
-                }
+           
             updatedMeals = [meal]
             addDocToCollectionHandler(userId,updatedMeals,'meal added successfully')
             resetFeedbackMessage()
@@ -167,35 +208,20 @@ const resetFeedbackMessage = () => {
             return
             }
 
+            const existingItem = docData.mealplan.find(food => food.id === meal.id)
+            if (existingItem){
+   
+                return
+            }
 
-           
-             
-               const existingMeal = docData.mealplan.find(meal => meal.mealTitle.toLowerCase() === foodAddingValues.mealTitle.toLowerCase() 
-                && meal.selectedOccasion === foodAddingValues.selectedOccasion && meal.selectedMealDay === foodAddingValues.selectedMealDay)
-                       
-                    
-                        if(existingMeal){
-                            verified = false
-                            setMessageHandler('Meal already added to occasion',verified)
-                            resetFeedbackMessage()
-                              return
-                          }
-                          else{
-                            const meal = {
-                                id: foodId,
-                               mealTitle: foodAddingValues.mealTitle,
-                                selectedOccasion: foodAddingValues.selectedOccasion,
-                               selectedWeight: foodAddingValues.selectedWeight,
-                                selectedMealDay: foodAddingValues.selectedMealDay
-                        
-                            }
+
                         updatedMeals = [...docData.mealplan,meal]
                           
                         addDocToCollectionHandler(userId,updatedMeals,'meal added successfully')
                        
                         clearMealHandler()
                             resetFeedbackMessage()
-                        }
+                        
                     
             
             
@@ -211,46 +237,36 @@ const resetFeedbackMessage = () => {
 
    
        
-    const updateMealHandler =  (id,userId,mappedMeal) => {
-        const selectedMealIndex = docData.mealplan.findIndex(meal => meal.id === id)
-      
-            if(foodAddingValues.mealTitle === '' ){
-    
-                updateMeal(userId,selectedMealIndex,mappedMeal.mealTitle,foodAddingValues.selectedWeight)
-            }  
-            if(foodAddingValues.selectedWeight === '' ){
-    
-                updateMeal(userId,selectedMealIndex,foodAddingValues.mealTitle,mappedMeal.selectedWeight)
-            }  
-            if(foodAddingValues.selectedWeight === '' && foodAddingValues.selectedWeight === ''){
-    
-                updateMeal(userId,selectedMealIndex,mappedMeal.mealTitle,mappedMeal.selectedWeight)
-            }  
+    const updateMealHandler =  async(id,userId,selectedMeal,totalWeight,finalCal,servingValue) => {
 
-          if(foodAddingValues.mealTitle !== '' && foodAddingValues.selectedWeight !== ''  ){
+        await getDocumentData(userId).then(() => {
+            if(docData !== undefined){
+                const selectedMealIndex = docData.mealplan.findIndex(meal => meal.id === id)
 
-  
-            updateMeal(userId,selectedMealIndex,foodAddingValues.mealTitle, foodAddingValues.selectedWeight)
-          }
+                const updatedMeal = {
+                    ...docData.mealplan[selectedMealIndex],
+                    serving: servingValue,
+                    totalCalories: finalCal,
+                    totalWeight      
+                    
+                }
+                const copiedMeal = docData.mealplan
+              
+                
+            copiedMeal.splice(selectedMealIndex,1,updatedMeal)
+             addDocToCollectionHandler(userId,copiedMeal,'meal updated successfully')
+            
+            resetFeedbackMessage()
+            }
+
+          
+        })
+ 
 
     }
 
 
-const updateMeal = async (userId, mealIndex, mealTitle, selectedWeight) => {
-    const updatedMeal = {
-        ...docData.mealplan[mealIndex],
-        mealTitle: mealTitle,
-        selectedWeight: selectedWeight,
-                           
-        
-    }
-    const copiedMeal = docData.mealplan
-    
-copiedMeal.splice(mealIndex,1,updatedMeal)
- addDocToCollectionHandler(userId,copiedMeal,'meal updated successfully')
 
-resetFeedbackMessage()
-}
         const clearMealHandler = () => {
 
             const updateValue = {
@@ -273,21 +289,21 @@ resetFeedbackMessage()
             addDocToCollectionHandler(userId,updatedMeal,'meal removed successfully')
             resetFeedbackMessage()
          
-            if(recipieDocument.recipies === undefined){
-                return
-            }
-            const filteredDish = recipieDocument.recipies.filter(recipie => recipie.title.toLowerCase() !== mealTitle.toLowerCase())
+            // if(recipieDocument.recipies === undefined){
+            //     return
+            // }
+            // const filteredDish = recipieDocument.recipies.filter(recipie => recipie.title.toLowerCase() !== mealTitle.toLowerCase())
         
-            await getRecipiesFromDocument(userId).then(() => {
-                if(recipieDocument !== undefined){
-                    addMealRecipiesToDocument(userId,filteredDish)
+            // await getRecipiesFromDocument(userId).then(() => {
+            //     if(recipieDocument !== undefined){
+            //         addMealRecipiesToDocument(userId,filteredDish)
               
-                }
+            //     }
              
-            })
-            .catch((error)=>{
+            // })
+            // .catch((error)=>{
              
-            })
+            // })
 
             
         }
@@ -303,6 +319,8 @@ resetFeedbackMessage()
     
 
     return{
+        getMealSearchResultHandler,
+        mealSearchResult,
         mealTitleHandler,
     
         clearMealHandler,
@@ -314,7 +332,7 @@ selectMealDay,
 removeMealHandler,
 updateMealHandler,
 foodAddingValues,
-
+mealTitle
 
     }
 }

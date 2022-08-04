@@ -3,16 +3,17 @@
 export const variables = {
     white: '#fff',
     black: '#000',
-    blue: '#185c97',
+    blue: '#0b3860',
     orange: '#ff944d',
     yellow: '#ffb200',
     purple: '#3c0263',
     red: '#fa0000',
     lightGray: '#edf0f6;',
-    gray: '#d5d5d5',
+    gray: '#b3b3b3',
     darkGrey: '#3e4c5c',
-    lightBlue: '#00a3cc',
-    green: '#005f00'
+    lightBlue: '#e6f2ff',
+    green: '#005f00',
+
 
     
 }

@@ -2,45 +2,49 @@ import React, { Fragment, useContext } from 'react'
 import { MealContext } from '../../context/MealContext'
 import { UiContext } from '../../context/UiContext'
 import Modal from '../ui/modal/Modal'
-import { DeleteButton, DeleteIconContainer, EditButton, EditDeleteModalContainer, EditIconContainer, ModalAlteringTitle } from './EditDeleteModal.styles'
-import {ReactComponent as DeleteIcon} from '../../assets/deleteicon.svg'
-import {ReactComponent as EditIconButton} from '../../assets/edit.svg'
+import { DeleteButton,  EditButton, EditDeleteIconContainer, EditDeleteModalContainer, EditDeleteTitle, } from './EditDeleteModal.styles'
+
+import { actionTypes } from '../../context/UiContextReducer'
 const EditDeleteModal = (props) => {
 
-const {showEditDeleteModalHandler,showEditModalHandler,showdeletewarninghandler,showEditDeleteModal} = useContext(UiContext)
+const {showEditDeleteModalHandler,showEditDeleteModal,UiToggleHelper,showDeleteWarningModal,showEditModal} = useContext(UiContext)
 const {saveSelectedId,mealInfo} = useContext(MealContext)
 
     const editItemHandler =() => {
 
         saveSelectedId(mealInfo.id)
-        showEditDeleteModalHandler()
-        showEditModalHandler()
+       
+        UiToggleHelper(actionTypes.SHOW_EDIT_MODAL, showEditModal)
+        UiToggleHelper(actionTypes.SHOW_EDIT_DELETE_MODAL, showEditDeleteModal)
+        
     }
 
     const deletewarninghandler =  () => {
-        saveSelectedId(mealInfo.id,mealInfo.mealTitle)
-        showEditDeleteModalHandler()
-        showdeletewarninghandler()
-        
+        saveSelectedId(mealInfo.id,mealInfo.mealInfo.name)
+        UiToggleHelper(actionTypes.SHOW_EDIT_DELETE_MODAL, showEditDeleteModal)
+   
+        UiToggleHelper(actionTypes.SHOW_DELETE_WARNING_MODAL,showDeleteWarningModal)
     }
 
   return (
-    <Modal close={showEditDeleteModalHandler} title={mealInfo && mealInfo.mealTitle} show={showEditDeleteModal}>
+ 
+        <EditDeleteModalContainer as={Modal} close={(() => UiToggleHelper(actionTypes.SHOW_EDIT_DELETE_MODAL, showEditDeleteModal))} title={mealInfo && mealInfo.name} show={showEditDeleteModal}>
+           
+            <EditDeleteTitle>Editing {mealInfo && mealInfo.mealInfo.description.toLowerCase()} </EditDeleteTitle>
 
-        <Fragment>
-            <ModalAlteringTitle>You are altering {mealInfo ? mealInfo.mealTitle : 'this meal'}</ModalAlteringTitle>
-        <EditDeleteModalContainer>
-            <DeleteIconContainer onClick={deletewarninghandler}>
-            <DeleteButton>Delete Meal</DeleteButton>
-            </DeleteIconContainer>
+            <EditDeleteIconContainer>
+          
+            <DeleteButton onClick={deletewarninghandler} >Delete Meal</DeleteButton>
+    
 
-            <EditIconContainer onClick={editItemHandler}>
-           <EditButton>Edit Meal</EditButton>
-            </EditIconContainer>
-        </EditDeleteModalContainer>
-        </Fragment>
         
-    </Modal>
+           <EditButton onClick={editItemHandler}>Edit Meal</EditButton>
+           
+            </EditDeleteIconContainer>
+            
+        </EditDeleteModalContainer>
+     
+  
   )
 }
 

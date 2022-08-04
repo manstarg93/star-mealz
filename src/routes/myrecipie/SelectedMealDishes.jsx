@@ -4,7 +4,7 @@ import MySelectedDish from '../../components/myRecipieMeal/MySelectedDish'
 import LoadingSpinner from '../../components/ui/loading/LoadingSpinner'
 import { AuthContext } from '../../context/AuthContext'
 import { RecipieContext } from '../../context/RecipieContext'
-import { LoadingContainer } from './MyRecipies.styles'
+
 import { NoRecipieMessage, SelectedMealDishesContainer } from './SelectedMealDishes.styles'
 
 const SelectedMealDishes = () => {

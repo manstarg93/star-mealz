@@ -13,15 +13,15 @@ export const Input = (props) => {
 
 export const Select = props => {
   return(
-    <InputFormGroup>
+    <InputFormGroup >
      <InputLabel htmlFor={props.name ? props.name.toString() : ''}>{props.label}</InputLabel>
-    <SelectContainer>
+    <SelectContainer onChange={props.onChange && props.onChange}>
  <SelectInput value={props.value && props.value} defaultValue={props.defaultValue && props.defaultValue}  {...props}>
       {props.children}
       
      
     </SelectInput>
-    <ArrowDownContainer>
+    <ArrowDownContainer onClick={props.clicked} >
       <ArrowDown/>
       </ArrowDownContainer>
     </SelectContainer>

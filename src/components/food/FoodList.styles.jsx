@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { device } from '../../styles/mediaquery'
+import { variables } from '../../styles/variables'
 
 export const FoodListContainer = styled.form`
     display: flex;
@@ -9,8 +10,9 @@ export const FoodListContainer = styled.form`
     align-items: center;
     margin: 10px auto;
     
-  @media ${device.desktop}{
+  @media ${device.laptop}{
 flex-direction: row;
+width: 60%;
   }
 
 
@@ -19,8 +21,8 @@ flex-direction: row;
 export const FoodListItems = styled.div`
 
     margin: 10px auto;
-
-    width: 100%;
+    width: 80%;
+   
     padding: 0 10px;
     text-align: center;
     h1{
@@ -31,8 +33,8 @@ export const FoodListItems = styled.div`
 text-transform: capitalize;
     }
 
-    @media ${device.desktop}{
-        width: auto;
+    @media ${device.laptop}{
+        width: 100%;
     }
 `
 
@@ -50,4 +52,5 @@ export const AddRemoveContainer = styled.div`
 gap: 20px;
     position: relative;
 `
+
 

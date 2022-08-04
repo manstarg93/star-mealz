@@ -7,15 +7,20 @@ import { useFoodAddReducer } from "./FoodAddReducer";
 const days = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'];
             const NewDay =new Date().getDay()
         
-            const currentDay = days[NewDay]
+            let currentDay = days[NewDay]
+
+           if(currentDay !== ''){
+               currentDay = 'Today'
+           }
 
 export const FoodAddContext = createContext({
     foodAddingValues: {
-        mealTitle: '',
+        selectedMeal: null,
         selectedOccasion: 'breakfast',
         selectedMealDay: currentDay,
-        selectedWeight: '',
+    
        },
+       mealTitle: '',
     mealTitleHandler: () => {},
     foodSearchHandler: () => {},
     clearMealHandler: () => {},
@@ -32,6 +37,8 @@ export const FoodAddContext = createContext({
     selectMealDay: () => {},
     removeMealHandler: () => {},
     updateMealHandler: () => {},
+    getMealSearchResultHandler: () => {},
+    mealSearchResult: [],
        
 
  
@@ -40,8 +47,9 @@ export const FoodAddContext = createContext({
 
 
 export const FoodProvider = ({children}) => {
-    const {mealTitle, mealTitleHandler, clearMealHandler,selectOccasion,foodAddingValues,selectMealWeight,addMeal
-        ,addMealClicked,verified,feedBackMessage,selectMealDay,removeMealHandler,updateMealHandler} = useFoodAddReducer()
+    const { mealTitleHandler, clearMealHandler,selectOccasion,foodAddingValues,selectMealWeight,addMeal
+        ,addMealClicked,verified,feedBackMessage,selectMealDay,removeMealHandler,updateMealHandler,getMealSearchResultHandler,
+        mealSearchResult,mealTitle} = useFoodAddReducer()
 
 
     const value = {
@@ -54,7 +62,8 @@ export const FoodProvider = ({children}) => {
         addMeal,
         
         updateMealHandler,
-        addMealClicked,verified,feedBackMessage,selectMealDay,removeMealHandler,
+        addMealClicked,verified,feedBackMessage,selectMealDay,removeMealHandler,getMealSearchResultHandler,
+        mealSearchResult
        
     }
     return(

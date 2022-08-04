@@ -7,6 +7,7 @@ import Meal from '../../components/meal/Meal'
 import { AuthContext } from '../../context/AuthContext'
 import { MealContext } from '../../context/MealContext'
 import { UiContext } from '../../context/UiContext'
+import { actionTypes } from '../../context/UiContextReducer'
 
 
 import { MealPlanContainer } from './MealPlan.styles'
@@ -15,14 +16,16 @@ const MealPlan = () => {
 
   const {updateDatabase} =useContext(MealContext)
   const {userId} = useContext(AuthContext)
-  const {showEditDeleteModal,showEditDeleteModalHandler} = useContext(UiContext)
+  const {showEditDeleteModal,UiToggleHelper} = useContext(UiContext)
 
   useEffect(() => {
-    
+
     updateDatabase(userId)
 
     if(showEditDeleteModal){
-      showEditDeleteModalHandler()
+    
+
+      UiToggleHelper(actionTypes.SHOW_EDIT_DELETE_MODAL, showEditDeleteModal)
     }
 },[userId])
    

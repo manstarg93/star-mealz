@@ -12,7 +12,7 @@ const SelectMealDay = () => {
 
 
   return (
-    <SelectMealDaySelect label='Pick a day' name='mealday' value={foodAddingValues.selectedMealDay}  onChange={mealDaySelectHandler}>
+    <SelectMealDaySelect clicked={mealDaySelectHandler} label='Pick a day' name='mealday' value={foodAddingValues.selectedMealDay}  onChange={mealDaySelectHandler}>
     
         <option value='monday'>Monday</option>
         <option value='tuesday'>Tuesday</option>

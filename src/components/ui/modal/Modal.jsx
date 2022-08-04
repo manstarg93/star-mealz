@@ -9,8 +9,8 @@ const Modal = (props) => {
     const {title, close, show, children} = props
  
 
-  return createPortal(<Fragment><ModalContainer show={show} >
-      <ModalHeader>
+  return createPortal(<Fragment><ModalContainer show={show} className={props.className}  >
+      {/* <ModalHeader>
         
           <ModalTitle>
           {title &&  title}
@@ -19,10 +19,11 @@ const Modal = (props) => {
           <CloseModalContainer onClick={close}>
               <CloseModalIcon />
           </CloseModalContainer>
-      </ModalHeader>
-      <ModalBody>
+      </ModalHeader> */}
+     
          {children}
-      </ModalBody>
+    
+      
   </ModalContainer>
   <ModalBackDrop show={show} onClick={close}/>
   </Fragment>,

@@ -11,7 +11,11 @@ import { AuthProvider } from './context/AuthContext';
 import { RecipieProvider } from './context/RecipieContext';
 import registerServiceWorker from 'react-service-worker';
 
-
+if (process.env.NODE_ENV === "production") {
+  console.log = () => { };
+  console.error = () => {}
+  console.debug = () => {}
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

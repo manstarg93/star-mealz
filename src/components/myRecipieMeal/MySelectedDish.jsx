@@ -3,7 +3,6 @@ import { useNavigate,useParams } from 'react-router';
 import { RecipieContext } from '../../context/RecipieContext';
 import { DishImage, DishTitle, ImageTitleContainer, MyDishDescription, MyDishList, MyDishTitle, MySelectedDishContainer, MySelectedDishMainContainer, NoRecipieMessage } from './MySelectedDish.styles'
 
-
 const MySelectedDish = () => {
     const {dishes,loading} =  useContext(RecipieContext)
 
@@ -30,8 +29,13 @@ const MySelectedDish = () => {
        return recipies.map((recipes) => {
         return(
             <MyDishList onClick={() => goToSelectedRecipie(recipes.label)} key={recipes.label} >
-                <ImageTitleContainer>
-                <DishImage srcSet={recipes.image}/>
+                <ImageTitleContainer> 
+
+                <DishImage srcSet={recipes.image}
+               
+                />
+          
+             
             <DishTitle>{recipes.label}</DishTitle>
         
                 </ImageTitleContainer>

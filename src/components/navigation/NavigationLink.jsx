@@ -5,18 +5,20 @@ import { AuthContext } from '../../context/AuthContext'
 import { UiContext } from '../../context/UiContext'
 import { Link } from 'react-router-dom'
 import { signOutOfGoogle } from '../../util/firebase.utils'
-import {DisplayName, LoginRegisterButton, LogoutButton, NavigationLinkContainer, NavigationLinks, WelcomeContainer } from './NavigationLink.styles'
+import {DisplayName, FindMealButton, FindMealContainer, LoginRegisterButton, LogoutButton, LogoutButtonHome, LogoutContainer, NavigationLinkContainer, NavigationLinks, WelcomeContainer, WelcomeUserText } from './NavigationLink.styles'
+import { actionTypes } from '../../context/UiContextReducer'
 
-
+import {ReactComponent as FoodSearchIcon} from '../../assets/searchIcon.svg'
 const NavigationLink = (props) => {
 const {closeNavHandler}  = props
-  const {showloginSignUpHandler} = useContext(UiContext)
+  const { UiToggleHelper, showLoginSignUpModal,showInitialAddMealModal} = useContext(UiContext)
 const {auth,setLogoutHandler,userData} = useContext(AuthContext)
 
 
 const navigate = useNavigate()
   const getStartedHandler = () => {
-    showloginSignUpHandler()
+  
+    UiToggleHelper(actionTypes.SHOW_LOGIN_SIGNUP, showLoginSignUpModal)
     closeNavHandler()
   }
   const logoutHandler = async() => {
@@ -28,11 +30,6 @@ const navigate = useNavigate()
 
   } 
 
-  const goToRecipie = () => {
-
-    navigate('/myrecipies')
-    closeNavHandler()
-  }
 
 
 
@@ -43,9 +40,15 @@ const navigate = useNavigate()
   }
 
 
-  const gotoAddMeal = async() => {
+  const goHome = async() => {
 
     navigate('/')
+    closeNavHandler()
+  }
+
+  const showAddMealModalHandler = () => {
+
+    UiToggleHelper(actionTypes.SHOW_INITIAL_ADD_MEAL_MODAL, showInitialAddMealModal)
     closeNavHandler()
   }
 
@@ -54,14 +57,30 @@ const navigate = useNavigate()
     <NavigationLinkContainer>
       
       {auth !== null && <Fragment> 
-        
-        <NavigationLinks onClick={gotoAddMeal} >Add Meal</NavigationLinks>
+        <NavigationLinks onClick={goHome} >Home</NavigationLinks>
+     
+     
+        <NavigationLinks  onClick={showAddMealModalHandler} >  ADD MEAL</NavigationLinks>
+   
+       
         <NavigationLinks onClick={goToMealPlanHandler} >Meal Plan</NavigationLinks>
-        <NavigationLinks onClick={goToRecipie} >My Recipies</NavigationLinks>
-        {userData !== null &&  <WelcomeContainer>Welcome<span>{ userData.displayName.toUpperCase()}</span></WelcomeContainer>} </Fragment> }
+     
+
+        
+        {userData !== null &&  <WelcomeContainer> <WelcomeUserText>
+          Welcome<span>{ userData.displayName.toUpperCase()}</span>
+      </WelcomeUserText>
+      <LogoutContainer>
+      {auth !== null &&  <LogoutButtonHome onClick={logoutHandler}>Log out</LogoutButtonHome> }
+      </LogoutContainer>
+    
+    </WelcomeContainer>} 
+        
+        </Fragment> }
       {/* <NavigationLinks as={Link}  to='/favourites'>Favourites</NavigationLinks> */}
+     
       <NavigationLinks>
-       {auth !== null ? <LogoutButton onClick={logoutHandler}>Log out</LogoutButton> : <LoginRegisterButton onClick={getStartedHandler} >Get Started</LoginRegisterButton>}
+       {auth === null && <LoginRegisterButton onClick={getStartedHandler} >Get Started</LoginRegisterButton>}
        </NavigationLinks>
       
      

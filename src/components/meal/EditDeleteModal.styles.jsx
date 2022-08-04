@@ -2,23 +2,43 @@ import styled from 'styled-components'
 import { device } from '../../styles/mediaquery'
 import { variables } from '../../styles/variables'
 import Button from '../ui/button/Button'
+import { ModalContainer } from '../ui/modal/Modal.styles'
 
 
-export const EditDeleteModalContainer = styled.div`
+export const EditDeleteModalContainer = styled(ModalContainer)`
     
-    display: flex;
     justify-content: center;
     align-items: center;
     margin: 20px auto;
-    gap: 50px;
+    gap: 20px;
+    flex-direction: column;
+    position: fixed;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: ${props => props.show ? 'flex' : 'none'};
     background-color: ${variables.white};
+
+    @media ${device.laptop}{
+
+        top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    }
 `
 
-export const DeleteIconContainer = styled.div`
+export const EditDeleteTitle = styled.h2`
     
-
-    
+width: 100%;
+padding: 10px;
+    margin: 0 auto;
+    font-size: 1.6rem;
+    text-align: center;
+    text-transform: capitalize;
 `
+
+
 
 
 export const EditButton = styled(Button)`
@@ -32,25 +52,16 @@ export const DeleteButton = styled(Button)`
     border: solid 1px ${variables.red};
     color: ${variables.red};
 `
-export const EditIconContainer = styled.div`
-    
 
-    svg{
-        fill: ${variables.green};
-        width: 10px;
-        height: 10px;
-       cursor: pointer;
-    
-
-       @media ${device.tablet}{
-        width: 20px;
-        height: 20px;
-       }
-    }
-`
 
 export const ModalAlteringTitle = styled.h4`
     text-align: center;
     text-transform: capitalize
     ;
+`
+
+export const EditDeleteIconContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 `

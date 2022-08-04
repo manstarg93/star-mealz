@@ -43,6 +43,11 @@ export const MealItemsLi = styled.li`
         font-size: 1.4rem;
     }
 
+
+    span{
+        text-transform: lowercase;
+    }
+
 `
 
 

@@ -7,7 +7,7 @@ import { variables } from '../../styles/variables';
 export const NavigationContainer = styled.div`
   
     width: 100%;
-    @media ${device.tablet}{
+    @media ${device.laptop}{
         
     }
 

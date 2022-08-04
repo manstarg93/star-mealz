@@ -1,14 +1,22 @@
-import React from 'react'
+import React, { Fragment } from 'react'
+
+import InitIalAddMeal from '../../components/addMealComponents/AddMealModal/InitialAddMeal'
 import Food from '../../components/food/Food'
 
 import { HomeContainer } from './Home.styles'
 
 const Home = () => {
   return (
-   <HomeContainer>
+    <Fragment>
+<HomeContainer>
 
-      <Food/>
-   </HomeContainer>
+<Food/>
+<InitIalAddMeal/>
+
+</HomeContainer>
+
+    </Fragment>
+   
   )
 }
 
