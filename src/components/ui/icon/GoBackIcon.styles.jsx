@@ -7,6 +7,6 @@ svg{
     width: 35px;
 
     height: 35px;
-    fill: ${variables.black}
+    fill: inherit;
 }
 `

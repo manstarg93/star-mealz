@@ -8,7 +8,7 @@ import {ReactComponent as CloseIcon} from '../../assets/close.svg'
 
 
 import Modal from '../ui/modal/Modal'
-import {  CloseMealAddingIconContainer, ConfirmButtonContainer, ConfirmEditButton, EditModalContainer,  MainNutritionContainer, MealAddingFormContainer, MealAddingHeaderContainer, MealAddingTitle,  Nutrition, NutritionalInformationContainer, NutritionalInformationTitle, NutritionContainer, NutritionSize, SearvingText, ServingAndCalorieCountContainer, ServingInput, ServingInputContainer, TotalCalories, TotalCaloriesText } from './EditMealModal.styles'
+import {  ConfirmButtonContainer, ConfirmEditButton, EditModalContainer,   MainNutritionContainer, MealAddingFormContainer,  Nutrition, NutritionalInformationContainer, NutritionalInformationTitle, NutritionContainer, NutritionSize, SearvingText, ServingAndCalorieCountContainer, ServingInput, ServingInputContainer, TotalCalories, TotalCaloriesText } from './EditMealModal.styles'
 import { CaloriesTextContainer,ServingCalorieCount } from '../finishAddingMeal/MealAdding.Styles'
 import LoadingSpinner from '../ui/loading/LoadingSpinner'
 
@@ -104,19 +104,10 @@ mySelectedMealToEdit = <LoadingSpinner/>
       mySelectedMealToEdit = <EditModalContainer 
       as={Modal}  
       close={cancelEdithandler} 
-  
+      title={`${mealInfo ? mealInfo.mealInfo.description.toLowerCase() : 'Meal'}`}
        show={showEditModal}>
-<MealAddingHeaderContainer>
-
-
-  
-           <MealAddingTitle>{ mealInfo ? mealInfo.mealInfo.description.toLowerCase() : 'Meal'}</MealAddingTitle>
-           <CloseMealAddingIconContainer>
-           <CloseIcon onClick={cancelEdithandler}/>
-           </CloseMealAddingIconContainer>
-          
-          
-       </MealAddingHeaderContainer>
+      
+        
 
        <MealAddingFormContainer  onSubmit={(event) => EditItemHandler(event,mealInfo,totalWeight,finalCal,servingValue)}>
            <ServingAndCalorieCountContainer>

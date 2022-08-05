@@ -13,7 +13,7 @@ export const EditDeleteModalContainer = styled(ModalContainer)`
     gap: 20px;
     flex-direction: column;
     position: fixed;
-
+width: 100%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);

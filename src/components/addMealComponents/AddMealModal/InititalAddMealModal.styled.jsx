@@ -16,8 +16,8 @@ top: 0;
 bottom: 0;
 left: 0;
 right: 0;
-gap: 40px;
-padding: 15px;
+
+padding: 0;
 
 justify-content: flex-start;
 display: ${props => props.show ? 'flex' : 'none'};
@@ -43,7 +43,18 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 gap: 20px;
-height: 100%;
+position: relative;
+margin: 20px auto;
+`
+
+
+
+
+export const InitialAddMealDoneContainer = styled.div`
+padding-bottom: 10px;
+background-color: ${variables.white};
+justify-self: flex-end;
+width: 100%;
 `
 
 export const InititalAddMealModalDone = styled(Button)`
@@ -51,15 +62,16 @@ width: 100%;
 background-color: ${variables.yellow};
 color: ${variables.white};
 justify-self: flex-end;
+box-shadow: none;
 `
 
 export const OccasionItemModal = styled(OccasionSelectorItem)`
     background-color: ${variables.lightGray};
 `
 
-export const InitialAddMealModalTitle = styled.div`
+export const InitialAddMealModalTitle = styled.h2`
      text-align: center;
     width: 100%;
     margin: 10px auto;
-    font-size: 2rem;
+    font-size: 1.8rem;
 `

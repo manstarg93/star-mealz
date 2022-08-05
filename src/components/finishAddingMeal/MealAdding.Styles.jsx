@@ -14,7 +14,7 @@ bottom: 0;
 left: 0;
 right: 0;
 gap: 40px;
-padding: 15px;
+padding: 0;
 height: 100%;
 overflow: auto;
 width: 100%;
@@ -39,33 +39,6 @@ flex-direction: column;
 `
 
 
-export const  MealAddingHeaderContainer = styled.div`
-
-
-display: flex;
-justify-content: space-around;
-align-items: center;
-position: relative;
-
-`
-
-
-export const MealAddingTitle = styled.h2`
-    text-align: center;
-    width: 100%;
-    margin: 0;
-    text-transform: capitalize;
-    `
-
-    export const CloseMealAddingIconContainer = styled.div`
-    
-    svg{
-        width: 30px;
-        height: 30px;
-        cursor: pointer;
-    }
-    `
-
 export const MealAddingFormContainer = styled.form`
 display: flex;
 width: 100%;
@@ -73,10 +46,12 @@ flex-direction: column;
 align-items: center;
 gap: 20px;
 height: 100%;
+padding: 15px;
 margin: 0 auto;
+position: relative;
 
 @media ${device.laptop}{
-    width: 80%;
+    
 }
 `
 
@@ -84,7 +59,8 @@ export const AddMealButtonContainer = styled.div`
 align-self: flex-end;
 justify-self: flex-end;
 width: 100%;
-margin: 0 auto;
+padding-bottom: 10px;
+background-color: ${variables.white};
 position:sticky;
 bottom: 0;
 `

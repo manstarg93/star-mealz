@@ -1,27 +1,34 @@
 import React, { Fragment } from 'react'
-import { CloseModalContainer, ModalBackDrop, ModalBody, ModalContainer, ModalHeader, ModalTitle } from './Modal.styles'
+import { CloseModalContainer, CloseModalIconContainer, ModalBackDrop, ModalBody, ModalContainer, ModalHeader, ModalIconContainer, ModalIcons, ModalTitle } from './Modal.styles'
 import { createPortal } from 'react-dom'
 import {ReactComponent as CloseModalIcon} from '../../../assets/close.svg'
+import {ReactComponent as LeftArrowIcon} from '../../../assets/leftArrowMain.svg'
+
 
 
 
 const Modal = (props) => {
-    const {title, close, show, children} = props
+    const {title, close, show, children,back} = props
  
 
   return createPortal(<Fragment><ModalContainer show={show} className={props.className}  >
-      {/* <ModalHeader>
-        
+      {title &&   <ModalHeader>
+        <ModalIcons>
+        <ModalIconContainer>{back && <LeftArrowIcon onClick={back}/> }</ModalIconContainer> 
+        <ModalIconContainer>{close && <CloseModalIcon onClick={close}/>}</ModalIconContainer>
+           
+        </ModalIcons>
           <ModalTitle>
           {title &&  title}
              
           </ModalTitle>
-          <CloseModalContainer onClick={close}>
-              <CloseModalIcon />
-          </CloseModalContainer>
-      </ModalHeader> */}
-     
-         {children}
+         
+      </ModalHeader>}
+ 
+ <ModalBody>
+ {children}
+ </ModalBody>
+        
     
       
   </ModalContainer>

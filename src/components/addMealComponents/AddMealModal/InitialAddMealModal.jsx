@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 
-import { InitialAddMealModalContainer, InitialAddMealModalTitle, InititalAddMealModalDone, OccasionItemModal, OccasionSelectorModalContainer } from './InititalAddMealModal.styled'
+import { InitialAddMealDoneContainer, InitialAddMealModalContainer, InitialAddMealModalTitle, InititalAddMealModalDone, OccasionItemModal, OccasionSelectorModalContainer } from './InititalAddMealModal.styled'
 import Modal from '../../ui/modal/Modal'
 import { UiContext } from '../../../context/UiContext'
 import { actionTypes } from '../../../context/UiContextReducer'
@@ -51,15 +51,8 @@ UiToggleHelper(actionTypes.SHOW_INITIAL_ADD_MEAL_MODAL, showInitialAddMealModal)
 
     
   return (
-    <InitialAddMealModalContainer as={Modal} show={showInitialAddMealModal} close={closeInititalAddMealModal}>
-         <AddMealModalHeaderContainer>
-   
-           <InitialAddMealModalTitle>Let's Add Our Meal.</InitialAddMealModalTitle>
-           <CloseAddMealModalIconContainer>
-           <CloseIcon onClick={closeInititalAddMealModal}/>
-           </CloseAddMealModalIconContainer>
-          
-       </AddMealModalHeaderContainer>
+    <InitialAddMealModalContainer title={`Let's Add Our Meal`} as={Modal} show={showInitialAddMealModal} close={closeInititalAddMealModal}>
+    
   
 <OccasionSelectorModalContainer >
 {occasionArray.map(occasion => {
@@ -75,7 +68,11 @@ UiToggleHelper(actionTypes.SHOW_INITIAL_ADD_MEAL_MODAL, showInitialAddMealModal)
         })}
 </OccasionSelectorModalContainer>
 
+<InitialAddMealDoneContainer>
+
 <InititalAddMealModalDone onClick={closeInititalAddMealModal}>Done</InititalAddMealModalDone>
+</InitialAddMealDoneContainer>
+
        
     </InitialAddMealModalContainer>
 

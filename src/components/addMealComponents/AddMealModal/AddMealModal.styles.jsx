@@ -16,7 +16,7 @@ bottom: 0;
 left: 0;
 right: 0;
 gap: 40px;
-padding: 15px;
+
 
 justify-content: flex-start;
 display: ${props => props.show ? 'flex' : 'none'};
@@ -36,32 +36,7 @@ flex-direction: column;
 }
 `
 
-export const  AddMealModalHeaderContainer = styled.div`
-    height: max-content;
 
-display: flex;
-justify-content: space-around;
-align-items: center;
-position: relative;
-
-`
-
-
-export const AddMealModalTitle = styled.h2`
-    text-align: center;
-    width: 100%;
-    margin: 10px auto;
-    font-size: 1.6rem;
-    `
-
-    export const CloseAddMealModalIconContainer = styled.div`
-    
-    svg{
-        width: 30px;
-        height: 30px;
-        cursor: pointer;
-    }
-    `
 
     export const AddMealModalForm = styled.form`
     display: flex;

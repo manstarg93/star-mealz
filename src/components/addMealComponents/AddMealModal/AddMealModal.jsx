@@ -31,15 +31,13 @@ hideMealSearchHandler()
         console.log(foodAddingValues)
     }
   return (
-   <AddMealModalContainer as={Modal} show={showAddMealModal} close={closeAddMealModalHandler}>
-       <AddMealModalHeaderContainer>
-       <GoBackIcon onClick={goBackToInitialAddMealModal}/>
-           <AddMealModalTitle>Adding {foodAddingValues.selectedOccasion} for {foodAddingValues.selectedMealDay}.</AddMealModalTitle>
-           <CloseAddMealModalIconContainer>
-           <CloseIcon onClick={closeAddMealModalHandler}/>
-           </CloseAddMealModalIconContainer>
-          
-       </AddMealModalHeaderContainer>
+   <AddMealModalContainer as={Modal} 
+   title={`Adding ${foodAddingValues.selectedOccasion} for ${foodAddingValues.selectedMealDay}`} 
+   show={showAddMealModal} 
+   close={closeAddMealModalHandler}
+   back={goBackToInitialAddMealModal}
+   >
+    
        <AddMealModalForm onSubmit={addmealHandler}>
       
        <MealSearchContainer>

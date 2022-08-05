@@ -4,24 +4,9 @@ import { boxShadow, variables } from '../../../styles/variables'
 
 
 export const ModalContainer = styled.div`
-   width: max-content;
-    margin: 0 auto;
-    height: max-content;
-    padding: 10px;
- 
   
- top: inherit;
- left: inherit;
- /* transform: translate(-50%, -50%); */
-    background-color: inherit;
-    box-shadow: ${boxShadow};
-    display: ${props => props.show ? 'block' : 'none'};
   z-index: 999;
-  @media ${device.tablet}{
-      /* width: 40%;
-      max-width: 60%; */
-  }
-
+padding: 0;
 `
 
 export const ModalBackDrop = styled.div`
@@ -38,20 +23,43 @@ export const ModalBackDrop = styled.div`
 `
 
 export const ModalHeader = styled.div`
-
+width: 100%;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: max-content;
-    padding: 5px 0;
-    border-bottom: solid ${variables.lightGray} .3px;
+    background: ${variables.blue};
+    flex-direction: column;
+    gap: 20px;
+    color: ${variables.white};
+    padding: 15px;
+
  
 `
 
+
+
+export const ModalIcons = styled.div`
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+display: flex;
+
+
+`
+export const ModalIconContainer = styled.div`
+
+      svg{
+        cursor: pointer;
+        fill: ${variables.white};
+        width: 30px;
+        height: 30px;
+    }
+`
+
 export const ModalTitle = styled.h1`
-    font-size: 1.2rem;
+    font-size: 1.8rem;
     font-weight: bold;
     text-transform: capitalize;
+    width: 100%;
+    text-align: center;
 `
 
 export const CloseModalContainer = styled.div`
@@ -64,9 +72,9 @@ export const CloseModalContainer = styled.div`
     }
 `
 
-// export const ModalBody = styled.div`
-//     overflow-y: auto;
-//    height: 100%;
-//     background-color: ${variables.white};
-//     width: 100%
-// `
+export const ModalBody = styled.div`
+   padding: 15px;
+    background-color: ${variables.white};
+    width: 100%;
+    height: 100%;
+`

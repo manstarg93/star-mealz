@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { UiContext } from '../../context/UiContext'
 import {AuthContext} from '../../context/AuthContext'
-import { AddMealButtonContainer, CaloriesTextContainer, CloseMealAddingIconContainer, FeedBackMessageErrorContainer, FeedBackMessageSuccessContainer, MainNutritionContainer, MealAddingContainer, MealAddingFormContainer, MealAddingHeaderContainer, MealAddingTitle,  Nutrition, NutritionalInformation, NutritionalInformationContainer, NutritionalInformationTitle, NutritionContainer, NutritionSize, SearvingText, ServingAndCalorieCountContainer, ServingCalorieCount, ServingInput, ServingInputContainer, TotalCalories, TotalCaloriesText } from './MealAdding.Styles'
+import { AddMealButtonContainer, CaloriesTextContainer, CloseMealAddingIconContainer, FeedBackMessageErrorContainer, FeedBackMessageSuccessContainer, MainNutritionContainer, MealAddingContainer, MealAddingFormContainer, MealAddingHeaderandCloseContainer, MealAddingHeaderContainer, MealAddingTitle,  Nutrition, NutritionalInformation, NutritionalInformationContainer, NutritionalInformationTitle, NutritionContainer, NutritionSize, SearvingText, ServingAndCalorieCountContainer, ServingCalorieCount, ServingInput, ServingInputContainer, TotalCalories, TotalCaloriesText } from './MealAdding.Styles'
 import Modal from '../ui/modal/Modal'
 import { actionTypes } from '../../context/UiContextReducer'
 import {ReactComponent as CloseIcon} from '../../assets/close.svg'
@@ -10,6 +10,7 @@ import GoBackIcon from '../ui/icon/GoBackIcon'
 import AddMeal from '../addMeal/AddMeal'
 import { MealContext } from '../../context/MealContext'
 import { useNavigate } from 'react-router'
+import { HeaderandCloseIconContainer } from '../editMeal/EditMealModal.styles'
 
 const MealAdding = () => {
 
@@ -95,18 +96,15 @@ if(foodAddingValues.selectedMeal){
         )
     })
 
-    mealToAdd =  <MealAddingContainer as={Modal} show={finishAddingMeal} close={closeMealAdding}>
-    <MealAddingHeaderContainer>
-    <GoBackIcon onClick={closeMealAddingHandler}/>
-   
-            <MealAddingTitle>{ foodAddingValues.selectedMeal ? foodAddingValues.selectedMeal.description.toLowerCase() : 'Meal'}</MealAddingTitle>
-            <CloseMealAddingIconContainer>
-            <CloseIcon onClick={closeMealAdding}/>
-            </CloseMealAddingIconContainer>
-           
-           
-        </MealAddingHeaderContainer>
- 
+    mealToAdd =  <MealAddingContainer as={Modal} 
+    show={finishAddingMeal} 
+    close={closeMealAdding}
+    back={closeMealAddingHandler}
+    title={`${foodAddingValues.selectedMeal ? foodAddingValues.selectedMeal.description.toLowerCase() : 'Meal'}`}
+    >
+    
+
+       
         <MealAddingFormContainer onSubmit={submitFormHandler}>
             <ServingAndCalorieCountContainer>
             <ServingInputContainer>

@@ -20,7 +20,7 @@ const {saveSelectedId,mealInfo} = useContext(MealContext)
     }
 
     const deletewarninghandler =  () => {
-        saveSelectedId(mealInfo.id,mealInfo.mealInfo.name)
+        saveSelectedId(mealInfo.id,mealInfo.mealInfo.description)
         UiToggleHelper(actionTypes.SHOW_EDIT_DELETE_MODAL, showEditDeleteModal)
    
         UiToggleHelper(actionTypes.SHOW_DELETE_WARNING_MODAL,showDeleteWarningModal)
@@ -28,9 +28,9 @@ const {saveSelectedId,mealInfo} = useContext(MealContext)
 
   return (
  
-        <EditDeleteModalContainer as={Modal} close={(() => UiToggleHelper(actionTypes.SHOW_EDIT_DELETE_MODAL, showEditDeleteModal))} title={mealInfo && mealInfo.name} show={showEditDeleteModal}>
+        <EditDeleteModalContainer as={Modal} close={(() => UiToggleHelper(actionTypes.SHOW_EDIT_DELETE_MODAL, showEditDeleteModal))} title={`${mealInfo && mealInfo.mealInfo.description.toLowerCase()}`} show={showEditDeleteModal}>
            
-            <EditDeleteTitle>Editing {mealInfo && mealInfo.mealInfo.description.toLowerCase()} </EditDeleteTitle>
+
 
             <EditDeleteIconContainer>
           

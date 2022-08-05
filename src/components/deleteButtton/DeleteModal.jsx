@@ -31,10 +31,11 @@ const DeleteModal = () => {
 
        
             }
+      
   return (
 
-        <DeleteModalContainer as={Modal} close={deletewarninghandler} show={showDeleteWarningModal}>
-            <DeleteModalHeader>Are you sure you want to remove {mealTitle ? mealTitle : 'meal'}</DeleteModalHeader>
+        <DeleteModalContainer as={Modal} title={`Are you sure you want to remove this meal ?`}show={showDeleteWarningModal}>
+           
            <DeleteModalButtonContainer>
                <CancelDeleteButton onClick={deletewarninghandler}>Cancel</CancelDeleteButton>
                <ConfirmDeleteButton onClick={deleteItemHandler}>Confirm</ConfirmDeleteButton>
