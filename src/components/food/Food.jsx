@@ -17,8 +17,8 @@ const Food = () => {
           <FoodDisplayContainer>
             <FoodCTA>
             <h1>Your meal plan just got easier.</h1>
-           <p>Plan, organise and enjoy whatever you'd like to eat for the day or the week, each food that you add has a summary of the calorie and detailed nutritions they provide for you.</p>
-           <p>It is very easy to get started, simply search for the food you like and it will be added to your meal plan which you can access at any time.</p>
+           <p>Plan, organise and enjoy whatever meal you would like to eat, you can also view the amount of calories and nutrition each meal provides when adding a meal.</p>
+           <p>It is very easy to get started, simply search for a meal that you like and it will be added to a meal plan for you to access at any time.</p>
            <p>Lets get started.</p>
 
             </FoodCTA>
