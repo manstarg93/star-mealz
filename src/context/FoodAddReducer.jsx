@@ -1,6 +1,7 @@
 
 import axios from "axios";
 import {  useReducer } from "react"
+import { foodApi } from "../util/apiUtil";
 import { addDocumentToCollection, addMealRecipiesToDocument, docData, getDocumentData, getRecipiesFromDocument, recipieDocument } from "../util/firebase.utils";
 
 
@@ -79,8 +80,8 @@ export const useFoodAddReducer = () => {
 
 
     const getMealSearchResultHandler = (mealTitle) => {
-        const apiKey = process.env.REACT_APP_USDA_API_KEY
-        
+       
+       
                     
         dispatch({
             type: actionType.SET_MEAL_TITLE,
@@ -90,7 +91,7 @@ export const useFoodAddReducer = () => {
         if(mealTitle !== ''){
             const query = mealTitle.toLowerCase()
             
-axios.get(`https://api.nal.usda.gov/fdc/v1/foods/search?query=${query}&pageSize=3&api_key=${apiKey}`,{
+axios.get(`https://api.nal.usda.gov/fdc/v1/foods/search?query=${query}&pageSize=3&api_key=${foodApi}`,{
              
                 }).then((res) => {
      

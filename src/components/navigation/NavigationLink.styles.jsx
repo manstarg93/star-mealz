@@ -127,6 +127,7 @@ z-index: 99;
 display: none;
 
 position: relative;
+
 span{
 font-style: italic;
 
@@ -137,6 +138,11 @@ padding: 0 10px;
 
 @media ${device.laptop}{
        display: block;
+       overflow: none;
+    
+     text-align: center;
+     color: ${variables.white};
+      
           &:hover > ${LogoutContainer}{
            display: block;
        }

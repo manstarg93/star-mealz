@@ -2,11 +2,11 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, signOut, signInWithRedirect, signInWithPopup, GoogleAuthProvider,createUserWithEmailAndPassword,signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 import {doc,getDoc, setDoc, getFirestore} from 'firebase/firestore'
-import { useContext } from "react";
-import { feedbackMessageUtil } from "./feedbackMessageUtil";
+
+import { firebaseApi } from "./apiUtil";
 
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  apiKey: firebaseApi,
   authDomain: "starmealz.firebaseapp.com",
   projectId: "starmealz",
   storageBucket: "starmealz.appspot.com",

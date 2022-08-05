@@ -9,6 +9,7 @@ import {DisplayName, FindMealButton, FindMealContainer, LoginRegisterButton, Log
 import { actionTypes } from '../../context/UiContextReducer'
 
 import {ReactComponent as FoodSearchIcon} from '../../assets/searchIcon.svg'
+import LoadingSpinner from '../ui/loading/LoadingSpinner'
 const NavigationLink = (props) => {
 const {closeNavHandler}  = props
   const { UiToggleHelper, showLoginSignUpModal,showInitialAddMealModal} = useContext(UiContext)
@@ -66,15 +67,14 @@ const navigate = useNavigate()
         <NavigationLinks onClick={goToMealPlanHandler} >Meal Plan</NavigationLinks>
      
 
-        
-        {userData !== null &&  <WelcomeContainer> <WelcomeUserText>
+        {userData !== null ?  <WelcomeContainer> <WelcomeUserText>
           Welcome<span>{ userData.displayName.toUpperCase()}</span>
       </WelcomeUserText>
       <LogoutContainer>
       {auth !== null &&  <LogoutButtonHome onClick={logoutHandler}>Log out</LogoutButtonHome> }
       </LogoutContainer>
     
-    </WelcomeContainer>} 
+    </WelcomeContainer> : <WelcomeContainer><WelcomeUserText>Logging in...</WelcomeUserText></WelcomeContainer>} 
         
         </Fragment> }
       {/* <NavigationLinks as={Link}  to='/favourites'>Favourites</NavigationLinks> */}

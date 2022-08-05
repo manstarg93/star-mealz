@@ -9,7 +9,8 @@ import { MealProvider } from './context/MealContext';
 import { UiProvider } from './context/UiContext';
 import { AuthProvider } from './context/AuthContext';
 import { RecipieProvider } from './context/RecipieContext';
-import registerServiceWorker from 'react-service-worker';
+
+import {register} from './serviceWorkerRegistration'
 
 if (process.env.NODE_ENV === "production") {
   console.log = () => { };
@@ -49,4 +50,5 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
-registerServiceWorker().register()
+
+register()

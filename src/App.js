@@ -28,7 +28,8 @@ const MealAdding = React.lazy(() => import('./components/finishAddingMeal/MealAd
   const {setAuthHandler,setUserData} = useContext(AuthContext)
 
   const authData = JSON.parse(localStorage.getItem('auth'))
-
+// console.log(process.env.REACT_APP_USDA_API_KEY)
+// console.log(process.env.REACT_APP_FIREBASE_API_KEY)
 
 
   useEffect(() => {
